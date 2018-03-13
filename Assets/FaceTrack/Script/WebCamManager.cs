@@ -251,7 +251,7 @@ namespace LiveAvatar
                     gameObject.GetComponent<Renderer>().material.mainTexture = texture2D;
 
 
-                    gameObject.transform.localScale = new Vector3(texture2D.width, texture2D.height, 1);
+//                    gameObject.transform.localScale = new Vector3(texture2D.width, texture2D.height, 1);
                     Debug.Log("Screen.width " + Screen.width + " Screen.height " + Screen.height + " Screen.orientation " + Screen.orientation);
 
 
