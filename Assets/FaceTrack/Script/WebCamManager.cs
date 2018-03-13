@@ -8,9 +8,12 @@ using DlibFaceLandmarkDetector;
 
 namespace LiveAvatar
 {
+    public delegate void FacelandmarkEventHandler(object sender, FacelandmarkResultEventArgs facelandmarkResultEventArgs);
+
     public class WebCamManager : SingletonMonoBehaviour<WebCamManager>
     {
 
+        public event FacelandmarkEventHandler OnFacelandmarkUpdated;
         /// <summary>
         /// Set the name of the device to use.
         /// </summary>
@@ -313,13 +316,21 @@ namespace LiveAvatar
                 //detect face rects
                 List<Rect> detectResult = faceLandmarkDetector.Detect();
 
+                bool eventTrigger = true;
                 foreach (var rect in detectResult)
                 {
                     //Debug.Log ("face : " + rect);
 
                     //detect landmark points
-                    faceLandmarkDetector.DetectLandmark(rect);
-
+                    var landmarkList = faceLandmarkDetector.DetectLandmark(rect);
+                    if (eventTrigger)
+                    {
+                        if (OnFacelandmarkUpdated != null)
+                        {
+                            OnFacelandmarkUpdated(this, new FacelandmarkResultEventArgs(rect, landmarkList));
+                        }
+                        eventTrigger = false;
+                    }
                     //draw landmark points
                     faceLandmarkDetector.DrawDetectLandmarkResult<Color32>(colors, texture2D.width, texture2D.height, 4, true, 0, 255, 0, 255);
                 }
