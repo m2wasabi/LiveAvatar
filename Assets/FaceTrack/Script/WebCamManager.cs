@@ -8,7 +8,7 @@ using DlibFaceLandmarkDetector;
 
 namespace LiveAvatar
 {
-    public class WebCamManager : MonoBehaviour
+    public class WebCamManager : SingletonMonoBehaviour<WebCamManager>
     {
 
         /// <summary>
