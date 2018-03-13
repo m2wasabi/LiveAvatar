@@ -74,8 +74,12 @@ namespace LiveAvatar
         // Update is called once per frame
         void Update()
         {
-            BodyAnchor.transform.position = BodyPos;
-            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z + 10);
+            if (isActive)
+            {
+                BodyAnchor.transform.position = BodyPos;
+                //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
+                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
+            }
         }
 
         private void fadeDetedtedEvent(object sender, FacelandmarkResultEventArgs facelandmarkResultEventArgs)
