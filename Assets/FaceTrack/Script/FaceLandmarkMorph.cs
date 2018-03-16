@@ -8,6 +8,7 @@ namespace LiveAvatar
     {
         public GameObject BodyAnchor;
         public GameObject HeadAnchor;
+        public GameObject TargetModel;
 
         private Rect _rect;
         private List<Vector2> _landmarkList;
@@ -30,6 +31,9 @@ namespace LiveAvatar
         protected float HeadAngX = 70;
         protected float HeadAngY = 90;
         protected float HeadAngZ = 300;
+        protected float LipOpenRatio = 200;
+
+        private MouthController mouthController;
 
         // Use this for initialization
         void Start()
@@ -46,6 +50,10 @@ namespace LiveAvatar
             if (BodyAnchor)
             {
                 BodyPosYOffset = BodyAnchor.transform.position.y;
+            }
+            if (TargetModel)
+            {
+                mouthController = TargetModel.GetComponentInChildren<MouthController>();
             }
         }
 
@@ -76,6 +84,11 @@ namespace LiveAvatar
             HeadAng = GetHeadAng(_landmarkList);
             UnshiftBuffer(BodyPosBuffer, BodyPos);
             UnshiftBuffer(HeadAngBuffer, HeadAng);
+
+            if (mouthController)
+            {
+                mouthController.MouthOpen = GetMouthOpen(_landmarkList);
+            }
         }
 
         // Update is called once per frame
@@ -211,6 +224,15 @@ namespace LiveAvatar
                 ave = ave / count;
             }
             return ave;
+        }
+
+        float GetMouthOpen(List<Vector2> points)
+        {
+            Vector2 upperLipTop = points[51];
+            Vector2 upperLipBottom = points[62];
+            Vector2 lowerLipTop = points[66];
+            Vector2 lowerLipBottom = points[57];
+            return (lowerLipTop.y - upperLipBottom.y)/(lowerLipBottom.y - upperLipTop.y) * LipOpenRatio;
         }
     }
 }
