@@ -24,13 +24,13 @@ namespace LiveAvatar
         /// Set the width of WebCamTexture.
         /// </summary>
         [SerializeField, TooltipAttribute("Set the width of WebCamTexture.")]
-        public int requestedWidth = 320;
+        public int requestedWidth = 640;
 
         /// <summary>
         /// Set the height of WebCamTexture.
         /// </summary>
         [SerializeField, TooltipAttribute("Set the height of WebCamTexture.")]
-        public int requestedHeight = 240;
+        public int requestedHeight = 480;
 
         /// <summary>
         /// Set whether to use the front facing camera.
