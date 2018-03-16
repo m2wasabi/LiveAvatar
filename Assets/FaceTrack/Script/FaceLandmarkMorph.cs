@@ -18,6 +18,9 @@ namespace LiveAvatar
         private Vector3 BodyPos;
         private Vector3 HeadAng;
 
+        private Vector3[] BodyPosBuffer = new Vector3[5];
+        private Vector3[] HeadAngBuffer = new Vector3[5];
+
         // キャラクター制御パラメーターの調整値
         protected float BodyPosX = 3;
         protected float BodyPosY = 3;
@@ -48,7 +51,10 @@ namespace LiveAvatar
 
         void OnDestroy()
         {
-            WebCamManager.Instance.OnFacelandmarkUpdated -= fadeDetedtedEvent;
+            if (WebCamManager.Instance != null)
+            {
+                WebCamManager.Instance.OnFacelandmarkUpdated -= fadeDetedtedEvent;
+            }
         }
 
         public void setDetectResult(Rect rect, List<Vector2> landmarkList)
@@ -68,7 +74,8 @@ namespace LiveAvatar
             if(!isActive) return;
             BodyPos = GetBodyPos(_rect);
             HeadAng = GetHeadAng(_landmarkList);
-
+            UnshiftBuffer(BodyPosBuffer, BodyPos);
+            UnshiftBuffer(HeadAngBuffer, HeadAng);
         }
 
         // Update is called once per frame
@@ -76,9 +83,12 @@ namespace LiveAvatar
         {
             if (isActive)
             {
-                BodyAnchor.transform.position = BodyPos;
+                var _bodyPos = AvarageBuffer(BodyPosBuffer);
+                BodyAnchor.transform.position = _bodyPos;
                 //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
-                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
+                var _headAnf = AvarageBuffer(HeadAngBuffer);
+                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAnf.y, _headAnf.x, _headAnf.z + 10);
+//                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
             }
         }
 
@@ -169,6 +179,38 @@ namespace LiveAvatar
             float dy = p2.y - p1.y;
             float rad = Mathf.Atan2(dy, dx);
             return rad * Mathf.Rad2Deg;
+        }
+
+        private void UnshiftBuffer( Vector3[] buf, Vector3 val)
+        {
+            if (buf.Length == 0) return;
+
+            int i;
+            for(i = buf.Length - 1; i > 0; i--)
+            {
+                buf[i] = buf[i - 1];
+            }
+            buf[0] = val;
+        }
+
+        private Vector3 AvarageBuffer(Vector3[] buf)
+        {
+            Vector3 ave = Vector3.zero;
+            int i;
+            int count = 0;
+            for (i = 0; i < buf.Length; i++)
+            {
+                if (buf[i] != Vector3.zero)
+                {
+                    ave += buf[i];
+                    count++;
+                }
+            }
+            if (count != 0)
+            {
+                ave = ave / count;
+            }
+            return ave;
         }
     }
 }
