@@ -218,8 +218,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 159139237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36, y: 2.4, z: 5.1}
-  m_LocalScale: {x: 6.4, y: 4.8, z: 1}
+  m_LocalPosition: {x: 0.94, y: 1.71, z: 5.1}
+  m_LocalScale: {x: 1.1676283, y: 0.8757212, z: 0.18244192}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -751,6 +751,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64f18c82e65c0469c93edace4c5932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MouthSmile: 0
+  MouthSurprize: 0
+  MouthSad: 0
+  MouthAnger3: 0
+  MouthAnger2: 0
+  MouthAnger1: 0
+  MouthCapture: 1
+  MouthEmotion: 0
   MouthOpen: 0
 --- !u!1 &1161791272
 GameObject:
