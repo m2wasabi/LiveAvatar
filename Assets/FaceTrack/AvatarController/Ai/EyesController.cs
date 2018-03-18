@@ -22,20 +22,47 @@ public class EyesController : MonoBehaviour
     [Range(0, 100)]
     public float EmoSurprize;
 
-    public bool EmoShirome;
+    public bool EmoShirome = false;
+
+    public bool EyeTrace = false;
+
+    public GameObject TraceTarget;
+    private GameObject GuideTarget;
 
     void Awake()
     {
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        GuideTarget = transform.parent.gameObject.transform.Find("HeadEnd_M/Hair_Root").gameObject;
     }
 
     void Update()
     {
+        if (EyeTrace && TraceTarget != null)
+        {
+            LookAtTraceObject();
+        }
         LookAt(LookAtHolizontal, LookAtVertical);
         UpdateEmoLevel();
         if(EmoShirome) Shirome();
     }
 
+    void LookAtTraceObject()
+    {
+        var LookWay = TraceTarget.transform.position - GuideTarget.transform.position;
+        LookWay = LookWay.normalized;
+        var localLookAt = GuideTarget.transform.worldToLocalMatrix *  LookWay;
+        // 目線が 外すぎる or 背後に回った場合 目で追いかけない
+        if (localLookAt.z < 0 || Mathf.Abs(localLookAt.x) + Mathf.Abs(localLookAt.y) * 1.5 > 1.2)
+        {
+            LookAtHolizontal = 0;
+            LookAtVertical   = 0;
+        }
+        else
+        {
+            LookAtHolizontal = -localLookAt.x * 150;
+            LookAtVertical   =  localLookAt.y * 100;
+        }
+    }
     void LookAt(float horizontal, float vertical)
     {
         if (horizontal == 0)
