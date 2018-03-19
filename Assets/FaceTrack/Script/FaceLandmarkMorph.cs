@@ -100,7 +100,7 @@ namespace LiveAvatar
                 BodyAnchor.transform.position = _bodyPos;
                 //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
                 var _headAnf = AvarageBuffer(HeadAngBuffer);
-                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAnf.y, _headAnf.x, _headAnf.z + 10);
+                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAnf.y, _headAnf.x, _headAnf.z);
 //                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
             }
         }
