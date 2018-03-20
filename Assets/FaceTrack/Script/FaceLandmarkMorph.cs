@@ -99,8 +99,8 @@ namespace LiveAvatar
                 var _bodyPos = AvarageBuffer(BodyPosBuffer);
                 BodyAnchor.transform.position = _bodyPos;
                 //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
-                var _headAnf = AvarageBuffer(HeadAngBuffer);
-                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAnf.y, _headAnf.x, _headAnf.z);
+                var _headAng = AvarageBuffer(HeadAngBuffer);
+                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAng.y, -_headAng.x, _headAng.z);
 //                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
             }
         }
@@ -163,7 +163,7 @@ namespace LiveAvatar
             float zAng = (Vector2.Distance(mouth, chin) / Vector2.Distance(left, right) - 0.2f) * HeadAngZ;
 
             // 唇下と顎下の点から角度計算して頭向きに利用
-            return new Vector3(xAng, -yAng, zAng);
+            return new Vector3(xAng, yAng, zAng);
         }
 
         /// <summary>
