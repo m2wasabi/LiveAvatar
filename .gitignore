@@ -35,6 +35,7 @@ sysinfo.txt
 *.unitypackage
 
 /Build/
+/Build*/
 
 /Assets/DlibFaceLandmarkDetector/
 /Assets/DlibFaceLandmarkDetector.meta
@@ -54,3 +55,5 @@ sysinfo.txt
 /Assets/JapaneseClassroomModel.meta
 /Assets/UnityChan/
 /Assets/UnityChan.meta
+/Assets/LeapMotion/
+/Assets/LeapMotion.meta
