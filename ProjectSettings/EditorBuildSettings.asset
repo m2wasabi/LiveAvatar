@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/DlibFaceLandmarkDetector/Examples/DlibFaceLandmarkDetectorExample.unity
     guid: f14b07666e9ee894fac7f94624ef302d
-  - enabled: 1
+  - enabled: 0
     path: Assets/DlibFaceLandmarkDetector/Examples/CatDetectionExample/CatDetectionExample.unity
     guid: 6c173eaaeba2da1408c7057b72cf8441
-  - enabled: 1
+  - enabled: 0
     path: Assets/DlibFaceLandmarkDetector/Examples/Texture2DExample/Texture2DExample.unity
     guid: 395c78d8a8e9cc54282ffbc365e28683
-  - enabled: 1
+  - enabled: 0
     path: Assets/DlibFaceLandmarkDetector/Examples/WebCamTextureExample/WebCamTextureExample.unity
     guid: d10e63dad123dea49ab251a205ecf64f
+  - enabled: 1
+    path: Assets/FaceTrack/ai_classroom_leapmotion.unity
+    guid: 22fa59b4763240b42bdd353ddc204696
