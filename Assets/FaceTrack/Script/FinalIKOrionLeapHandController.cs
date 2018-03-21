@@ -5,6 +5,7 @@ Author: MiyuMiyu
 */
 
 using UnityEngine;
+#if ENABLE_LEAPMOTION
 using Leap.Unity;
 using RootMotion.FinalIK;
 
@@ -141,3 +142,4 @@ public class FinalIKOrionLeapHandController : LeapHandController
         }
     }
 }
+#endif
