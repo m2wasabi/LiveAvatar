@@ -167,7 +167,7 @@ public class HandPoseController : MonoBehaviour {
                 return (int) _poseDegreeConfigsTypeA[i].pose;
             }
         }
-        return 0;
+        return (int)HandPose.none;
     }
 
     private int getPoseByDegreeWithShift(float deg, bool shift)
@@ -180,6 +180,6 @@ public class HandPoseController : MonoBehaviour {
                 return (int)_poseDegreeConfigsTypeB[shiftId, i].pose;
             }
         }
-        return 0;
+        return (int)HandPose.none;
     }
 }
