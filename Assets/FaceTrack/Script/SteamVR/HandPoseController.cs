@@ -6,6 +6,14 @@ public class HandPoseController : MonoBehaviour {
     public GameObject leftHandController;
     public GameObject rightHandController;
 
+    public FingerControlType controlType = FingerControlType.TypeA;
+
+    public enum FingerControlType
+    {
+        TypeA,
+        TypeB
+    }
+
     private SteamVR_Controller.Device _device_L, _device_R;
 
     private Animator _animator;
@@ -40,7 +48,37 @@ public class HandPoseController : MonoBehaviour {
         right
     }
 
-    private PoseDegreeConfig[] _poseDegreeConfigs = new PoseDegreeConfig[9];
+    private PoseDegreeConfig[] _poseDegreeConfigsTypeA = new PoseDegreeConfig[9]
+    {
+        new PoseDegreeConfig(HandPose.fist, 30),
+        new PoseDegreeConfig(HandPose.like, 60),
+        new PoseDegreeConfig(HandPose.otome, 120),
+        new PoseDegreeConfig(HandPose.ok, 150),
+        new PoseDegreeConfig(HandPose.open, 210),
+        new PoseDegreeConfig(HandPose.rock, 240),
+        new PoseDegreeConfig(HandPose.v, 300),
+        new PoseDegreeConfig(HandPose.point, 330),
+        new PoseDegreeConfig(HandPose.fist, 360)
+    };
+
+    private PoseDegreeConfig[,] _poseDegreeConfigsTypeB = new PoseDegreeConfig[2,5]
+    {
+        {
+            new PoseDegreeConfig(HandPose.fist, 45),
+            new PoseDegreeConfig(HandPose.otome, 135),
+            new PoseDegreeConfig(HandPose.open, 225),
+            new PoseDegreeConfig(HandPose.v, 315),
+            new PoseDegreeConfig(HandPose.fist, 360)
+
+        },
+        {
+            new PoseDegreeConfig(HandPose.like, 45),
+            new PoseDegreeConfig(HandPose.ok, 135),
+            new PoseDegreeConfig(HandPose.rock, 225),
+            new PoseDegreeConfig(HandPose.point, 315),
+            new PoseDegreeConfig(HandPose.like, 360),
+        }
+    };
 
     void Start () {
         _animator = GetComponent<Animator>();
@@ -55,28 +93,28 @@ public class HandPoseController : MonoBehaviour {
             var controller_r = rightHandController.GetComponent<SteamVR_TrackedObject>();
             _device_R = SteamVR_Controller.Input((int)controller_r.index);
         }
-
-        _poseDegreeConfigs[0] = new PoseDegreeConfig(HandPose.fist, 30);
-        _poseDegreeConfigs[1] = new PoseDegreeConfig(HandPose.like, 60);
-        _poseDegreeConfigs[2] = new PoseDegreeConfig(HandPose.otome, 120);
-        _poseDegreeConfigs[3] = new PoseDegreeConfig(HandPose.ok, 150);
-        _poseDegreeConfigs[4] = new PoseDegreeConfig(HandPose.open, 210);
-        _poseDegreeConfigs[5] = new PoseDegreeConfig(HandPose.rock, 240);
-        _poseDegreeConfigs[6] = new PoseDegreeConfig(HandPose.v, 300);
-        _poseDegreeConfigs[7] = new PoseDegreeConfig(HandPose.point, 330);
-        _poseDegreeConfigs[8] = new PoseDegreeConfig(HandPose.fist, 360);
     }
 
     void Update () {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            controlType = (controlType == FingerControlType.TypeA) ? FingerControlType.TypeB : FingerControlType.TypeA;
+        }
         if (_animator != null)
         {
             if (_device_L != null)
             {
-                _animator.SetInteger("LeftHandPose", updateHandPose(_device_L, Hand.left));
+                if (_device_L.GetPress(SteamVR_Controller.ButtonMask.Grip))
+                {
+                    _animator.SetInteger("LeftHandPose", updateHandPose(_device_L, Hand.left));
+                }
             }
             if (_device_R != null)
             {
-                _animator.SetInteger("RightHandPose", updateHandPose(_device_R, Hand.right));
+                if (_device_R.GetPress(SteamVR_Controller.ButtonMask.Grip))
+                {
+                    _animator.SetInteger("RightHandPose", updateHandPose(_device_R, Hand.right));
+                }
             }
 
         }
@@ -108,17 +146,38 @@ public class HandPoseController : MonoBehaviour {
             }
             Debug.Log(deg);
 
-            return getPoseByDegree(deg);
+            if (controlType == FingerControlType.TypeA)
+            {
+                return getPoseByDegree(deg);
+            }
+            else
+            {
+                return getPoseByDegreeWithShift(deg, device.GetPress(SteamVR_Controller.ButtonMask.Trigger));
+            }
+
         }
     }
 
     private int getPoseByDegree(float deg)
     {
-        for (int i = 0; i < _poseDegreeConfigs.Length; i++)
+        for (int i = 0; i < _poseDegreeConfigsTypeA.Length; i++)
         {
-            if (_poseDegreeConfigs[i].degree > deg)
+            if (_poseDegreeConfigsTypeA[i].degree > deg)
             {
-                return (int) _poseDegreeConfigs[i].pose;
+                return (int) _poseDegreeConfigsTypeA[i].pose;
+            }
+        }
+        return 0;
+    }
+
+    private int getPoseByDegreeWithShift(float deg, bool shift)
+    {
+        int shiftId = (shift)? 1:0;
+        for (int i = 0; i < _poseDegreeConfigsTypeB.GetLength(1); i++)
+        {
+            if (_poseDegreeConfigsTypeB[shiftId, i].degree > deg)
+            {
+                return (int)_poseDegreeConfigsTypeB[shiftId, i].pose;
             }
         }
         return 0;
