@@ -14,14 +14,19 @@ public class TrackingCalibrator : MonoBehaviour
 
     public GameObject trackingOffset;
 
-    private SteamVR_Controller.Device _device;
+    private SteamVR_Controller.Device _device_L,_device_R;
 
 	void Start ()
 	{
+	    if (leftHandController != null)
+	    {
+	        var controller_l = leftHandController.GetComponent<SteamVR_TrackedObject>();
+	        _device_L = SteamVR_Controller.Input((int)controller_l.index);
+	    }
 	    if (rightHandController != null)
 	    {
 	        var controller = rightHandController.GetComponent<SteamVR_TrackedObject>();
-	        _device = SteamVR_Controller.Input((int) controller.index);
+	        _device_R = SteamVR_Controller.Input((int) controller.index);
 	    }
 
     }
@@ -33,10 +38,19 @@ public class TrackingCalibrator : MonoBehaviour
 	        return;
 	    }
 
+	    if ((_device_L.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) &&
+	         _device_R.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu))
+	        || (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) &&
+	            _device_L.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu)))
+	    {
+	        calibratingMode = true;
+	        return;
+        }
+
         if (calibratingMode && leftHandController != null && rightHandController != null && leftHandGuide != null && rightHandGuide != null && trackingOffset != null)
 	    {
 
-	        if (_device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+	        if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
 	        {
                 // 左手首→右手首の位置から首の位置を求める
                 Vector3 guideNeckPos = Vector3.Lerp(leftHandGuide.transform.position, rightHandGuide.transform.position, 0.5f);
