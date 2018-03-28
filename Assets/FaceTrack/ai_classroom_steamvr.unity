@@ -1188,6 +1188,7 @@ GameObject:
   - component: {fileID: 824047507}
   - component: {fileID: 824047509}
   - component: {fileID: 824047508}
+  - component: {fileID: 824047510}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1210,9 +1211,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -131.7, y: 109.4}
+  m_AnchoredPosition: {x: -31.700012, y: 9.399994}
   m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &824047508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,6 +1247,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824047506}
+--- !u!114 &824047510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824047506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa253d1859b88f4fb2e6e67c57801ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &848685124
 Prefab:
   m_ObjectHideFlags: 0
@@ -2529,6 +2541,7 @@ GameObject:
   - component: {fileID: 1242525360}
   - component: {fileID: 1242525359}
   - component: {fileID: 1242525358}
+  - component: {fileID: 1242525362}
   m_Layer: 5
   m_Name: MonitorCanvas
   m_TagString: Untagged
@@ -2612,6 +2625,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1242525362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242525357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8386841d83b17f44aa0ee48f0142fbbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1264732338 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4479197036227264, guid: bcfcb1b16ebed974ea8244e270af8d4a,
