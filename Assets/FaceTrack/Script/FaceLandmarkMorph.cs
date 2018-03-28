@@ -25,7 +25,8 @@ namespace LiveAvatar
         // キャラクター制御パラメーターの調整値
         protected float BodyPosX = 3;
         protected float BodyPosY = 3;
-        protected float BodyPosZ = 2;
+        protected float BodyPosRatioZ = 1.2f;
+        protected float BodyPosOffsetZ = -0.5f;
         protected float BodyPosYOffset;
         protected Vector3 HeadAngleOffset;
         protected float HeadAngX = 70;
@@ -39,6 +40,8 @@ namespace LiveAvatar
         void Start()
         {
             WebCamManager.Instance.OnFacelandmarkUpdated += fadeDetedtedEvent;
+            WebCameraScreenSize.x = WebCamManager.Instance.requestedWidth;
+            WebCameraScreenSize.y = WebCamManager.Instance.requestedHeight;
             if (HeadAnchor)
             {
                 HeadAngleOffset = HeadAnchor.transform.eulerAngles;
@@ -131,7 +134,7 @@ namespace LiveAvatar
             // 末尾の除算で調整
             xPos = (xPos - (xMax / 2)) / (xMax / 2) / BodyPosX * zPos;
             yPos = -(yPos - (yMax / 2)) / (yMax / 2) / BodyPosY * zPos;
-            zPos = zPos / BodyPosZ;
+            zPos = zPos * BodyPosRatioZ + BodyPosOffsetZ;
 
             // 初期位置のオフセットを適用
             yPos += BodyPosYOffset;
