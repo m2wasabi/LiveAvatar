@@ -9,6 +9,37 @@ HMDを使わずにバーチャルユーチューバーになれるキットで�
 + Webカメラ(視野角60°ぐらいを想定)
 + モニタ(2画面)
 
+## HMD無しでSteamVRを起動する
+
+以下を参考に手順を実施すると使えます。
+
+### SteamVRのベータ版をインストール
+
+[【Unity】VR ReadyでないPCでVive Trackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/03/30/231703)
+
+### HMD必須にしない設定変更
+[【Unity】ViveのHMDなしにTrackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/01/08/034418)
+
+### Init_HmdNotFoundPresenceFailed エラーを潰す
+
+[HTC Vive TrackerをUnityでHMDレスで使いたい時に出るエラーを回避する | しゃの](http://d.hatena.ne.jp/syan0/20180316/1521199910)
+
+### 先にViveコントローラーの電源を入れてからStreamVRを起動する
+
+1. Viveコントローラーの電源を入れる(LEDが緑に光る)
+2. SteamVRを起動する
+
+**失敗したら…**
+
+1. SteamVRを終了する
+2. Steamを終了する
+
+**それでも安定しない場合(特にアップデート失敗)は…**
+
+1. インターネットを切断した状態でSteamVRを起動する
+2. オフラインモードで起動するか聞かれるので、オフラインモードにする
+3. SteamVRが起動してコントローラーを認識した後、インターネットにつなぐ
+
 ## 操作方法
 
 ### Webカメラからの操作
