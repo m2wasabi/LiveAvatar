@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -122,18 +122,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100068, guid: de0952d9c6f68bc47b4bce5b594659c0, type: 3}
   m_PrefabInternal: {fileID: 1167083736}
---- !u!114 &55663449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 55663448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491fe6fc53af7de478d8b57822ce9dcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackGroundObject: {fileID: 55663448}
 --- !u!1 &73505782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3911,6 +3899,7 @@ GameObject:
   - component: {fileID: 1721781558}
   - component: {fileID: 1721781557}
   - component: {fileID: 1721781556}
+  - component: {fileID: 1721781559}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3963,6 +3952,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1721781559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1721781555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491fe6fc53af7de478d8b57822ce9dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackGroundObject: {fileID: 55663448}
 --- !u!1 &1731164780 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1707913845486044, guid: bcfcb1b16ebed974ea8244e270af8d4a,
@@ -4582,7 +4583,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1539552523}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6666667
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
