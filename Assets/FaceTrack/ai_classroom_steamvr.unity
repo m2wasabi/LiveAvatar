@@ -2568,6 +2568,7 @@ GameObject:
   - component: {fileID: 1242525359}
   - component: {fileID: 1242525358}
   - component: {fileID: 1242525362}
+  - component: {fileID: 1242525363}
   m_Layer: 5
   m_Name: MonitorCanvas
   m_TagString: Untagged
@@ -2667,6 +2668,20 @@ MonoBehaviour:
   ContentBox: {fileID: 1419768778}
   Telop: {fileID: 1634260445}
   ToggleGroup: {fileID: 1419768780}
+--- !u!114 &1242525363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242525357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e39ea7e55eb34bb8e44a5ccff81ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandController: {fileID: 1046053740}
+  rightHandController: {fileID: 414008289}
+  ScrollViewUI: {fileID: 2125807744}
 --- !u!4 &1264732338 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4479197036227264, guid: bcfcb1b16ebed974ea8244e270af8d4a,
