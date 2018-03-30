@@ -10,15 +10,14 @@ public class ScenarioLoader : MonoBehaviour
     [SerializeField]
     public GameObject UIprefab;
 
-    private GameObject[] SelectionArray;
-    int currentSelected = 0;
+    public GameObject[] SelectionArray;
+    public int currentSelected = 0;
 
     public GameObject ContentBox;
     public Text Telop;
     public ToggleGroup ToggleGroup;
 
     private string _scenario = "";
-    private int UIOffset = 0;
 
     void Start () {
         ReadFile();
@@ -34,29 +33,45 @@ public class ScenarioLoader : MonoBehaviour
     }
 
     void Update () {
-        Debug.Log("CurrentSelect " + currentSelected + "Array is " + SelectionArray[currentSelected]);
+        //Debug.Log("CurrentSelect " + currentSelected + "Array is " + SelectionArray[currentSelected]);
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            currentSelected--;
-
-            if (currentSelected < 0)
-            {
-                currentSelected = 0;
-            }
-            EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+            MoveUp();
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            currentSelected++;
-
-            if (currentSelected >= SelectionArray.Length - 1)
-            {
-                currentSelected = SelectionArray.Length - 1;
-            }
-            EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+            MoveDOwn();
         }
+    }
+
+    public void MoveUp()
+    {
+        currentSelected--;
+
+        if (currentSelected < 0)
+        {
+            currentSelected = 0;
+        }
+        EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+    }
+
+    public void MoveDOwn()
+    {
+        currentSelected++;
+
+        if (currentSelected >= SelectionArray.Length - 1)
+        {
+            currentSelected = SelectionArray.Length - 1;
+        }
+        EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+    }
+
+    public void ToggleAction()
+    {
+        EventSystem.current.currentSelectedGameObject.GetComponent<Toggle>().isOn =
+            !EventSystem.current.currentSelectedGameObject.GetComponent<Toggle>().isOn;
     }
 
     void OnGUI()
