@@ -19,7 +19,7 @@ public class HelpUI : MonoBehaviour
         helpRect = GetComponent<RectTransform>();
     }
     
-    void OnGUI () {
+    void Update () {
         if (Input.GetKeyDown(KeyCode.H))
         {
             toggleHelpUI();
@@ -40,7 +40,7 @@ public class HelpUI : MonoBehaviour
             case state.Small:
                 status = state.Big;
                 helpUI.CrossFadeAlpha(1, duration, true);
-                helpRect.sizeDelta = new Vector2(400,400);
+                helpRect.sizeDelta = new Vector2(800,800);
                 break;
             case state.Big:
                 status = state.Hide;
