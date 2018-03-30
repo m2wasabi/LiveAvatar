@@ -26,7 +26,7 @@ public class ScenarioController : MonoBehaviour {
     void Update () {
         if (_device_L.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && !_device_R.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
-            ScrollViewUI.SetActive(!ScrollViewUI.active);;
+            ScrollViewUI.SetActive(!ScrollViewUI.activeSelf);
         }
 
     }
