@@ -2120,6 +2120,7 @@ GameObject:
   - component: {fileID: 1161791275}
   - component: {fileID: 1161791274}
   - component: {fileID: 1161791273}
+  - component: {fileID: 1161791277}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2191,6 +2192,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1161791277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1161791272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc98962eea83d94d996616b7a0a5d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1167083736
 Prefab:
   m_ObjectHideFlags: 0
@@ -2665,6 +2677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIprefab: {fileID: 1122892705795600, guid: cbc82ed0faed6fd4586c047fb569f147, type: 2}
+  SelectionArray: []
+  currentSelected: 0
   ContentBox: {fileID: 1419768778}
   Telop: {fileID: 1634260445}
   ToggleGroup: {fileID: 1419768780}
