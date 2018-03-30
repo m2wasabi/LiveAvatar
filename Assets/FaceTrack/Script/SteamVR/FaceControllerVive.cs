@@ -44,7 +44,7 @@ public class FaceControllerVive : MonoBehaviour {
         }
         if(EdittingFace) updateFacePose();
 
-        if (_device_L.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && !_device_R.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu))
+        if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && !_device_L.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
             eyesController.EyeTrace = !eyesController.EyeTrace;
         }
