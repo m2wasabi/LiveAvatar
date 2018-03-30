@@ -656,7 +656,6 @@ GameObject:
   - component: {fileID: 423885131}
   - component: {fileID: 423885134}
   - component: {fileID: 423885133}
-  - component: {fileID: 423885132}
   m_Layer: 0
   m_Name: Monitor Camera
   m_TagString: MainCamera
@@ -677,13 +676,6 @@ Transform:
   m_Father: {fileID: 1161791276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &423885132
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 423885130}
-  m_Enabled: 1
 --- !u!124 &423885133
 Behaviour:
   m_ObjectHideFlags: 0
@@ -4157,7 +4149,6 @@ GameObject:
   - component: {fileID: 1946241028}
   - component: {fileID: 1946241027}
   - component: {fileID: 1946241026}
-  - component: {fileID: 1946241025}
   m_Layer: 0
   m_Name: Monitor View Camera
   m_TagString: Untagged
@@ -4165,13 +4156,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1946241025
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1946241024}
-  m_Enabled: 1
 --- !u!124 &1946241026
 Behaviour:
   m_ObjectHideFlags: 0
