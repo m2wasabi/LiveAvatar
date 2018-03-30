@@ -93,6 +93,7 @@ public class ScenarioLoader : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.Log(e.Message);
             _scenario += SetDefaultText();
         }
     }
