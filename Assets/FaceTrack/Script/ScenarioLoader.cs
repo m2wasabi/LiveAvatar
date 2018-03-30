@@ -4,12 +4,16 @@ using System.IO;
 using System;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ScenarioLoader : MonoBehaviour
 {
     [SerializeField]
     public GameObject UIprefab;
+
+    private GameObject[] SelectionArray;
+    int currentSelected = 0;
 
     public GameObject ContentBox;
     public Text Telop;
@@ -21,9 +25,40 @@ public class ScenarioLoader : MonoBehaviour
     void Start () {
         ReadFile();
         CreateTelopToggles();
+        var selectionTransforms = ContentBox.GetComponentsInChildren<Toggle>();
+        SelectionArray = new GameObject[selectionTransforms.Length];
+        for (int i = 0; i < selectionTransforms.Length; i++)
+        {
+            SelectionArray[i] = selectionTransforms[i].gameObject;
+        }
+
+        EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
     }
 
     void Update () {
+        Debug.Log("CurrentSelect " + currentSelected + "Array is " + SelectionArray[currentSelected]);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            currentSelected--;
+
+            if (currentSelected < 0)
+            {
+                currentSelected = 0;
+            }
+            EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            currentSelected++;
+
+            if (currentSelected >= SelectionArray.Length - 1)
+            {
+                currentSelected = SelectionArray.Length - 1;
+            }
+            EventSystem.current.SetSelectedGameObject(SelectionArray[currentSelected], null);
+        }
     }
 
     void OnGUI()
