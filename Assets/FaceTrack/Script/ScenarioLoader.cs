@@ -4,13 +4,23 @@ using System.IO;
 using System;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ScenarioLoader : MonoBehaviour {
+public class ScenarioLoader : MonoBehaviour
+{
+    [SerializeField]
+    public GameObject UIprefab;
+
+    public GameObject ContentBox;
+    public Text Telop;
+    public ToggleGroup ToggleGroup;
 
     private string _scenario = "";
+    private int UIOffset = 0;
 
     void Start () {
         ReadFile();
+        CreateTelopToggles();
     }
 
     void Update () {
@@ -18,7 +28,7 @@ public class ScenarioLoader : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.TextArea(new Rect(5, 5, Screen.width, 50), _scenario);
+//        GUI.TextArea(new Rect(5, 5, Screen.width, 50), _scenario);
     }
 
     void ReadFile()
@@ -43,5 +53,17 @@ public class ScenarioLoader : MonoBehaviour {
     {
         string txt = Application.dataPath;
         return "シナリオがないから何も話せないよ～\n↓にシナリオを書いてね!\ndataPath:" + txt + "/scenario.txt";
+    }
+
+    void CreateTelopToggles()
+    {
+        StringReader rs = new StringReader(_scenario);
+        while (rs.Peek() > -1)
+        {
+            GameObject toggle = Instantiate(UIprefab, ContentBox.transform) as GameObject;
+            toggle.GetComponent<Toggle>().group = ToggleGroup;
+            toggle.GetComponentInChildren<Text>().text = rs.ReadLine();
+            toggle.GetComponent<TelopSwitch>().telopTarget = Telop;
+        }
     }
 }
