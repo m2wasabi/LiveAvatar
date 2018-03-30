@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -118,6 +118,22 @@ Transform:
   m_PrefabParentObject: {fileID: 4051433191799044, guid: bcfcb1b16ebed974ea8244e270af8d4a,
     type: 2}
   m_PrefabInternal: {fileID: 1057224126}
+--- !u!1 &55663448 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100068, guid: de0952d9c6f68bc47b4bce5b594659c0, type: 3}
+  m_PrefabInternal: {fileID: 1167083736}
+--- !u!114 &55663449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55663448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491fe6fc53af7de478d8b57822ce9dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackGroundObject: {fileID: 55663448}
 --- !u!1 &73505782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,7 +2371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandController: {fileID: 1046053740}
   rightHandController: {fileID: 414008289}
-  controlType: 0
+  controlType: 1
 --- !u!114 &1209434960
 MonoBehaviour:
   m_ObjectHideFlags: 0
