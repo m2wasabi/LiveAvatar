@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using RootMotion.FinalIK;
 using UnityEngine;
 
 
@@ -24,8 +25,18 @@ namespace VRM
         [SerializeField]
         UniHumanoid.HumanPoseTransfer m_target;
 
+        [SerializeField]
+        RuntimeAnimatorController m_animationController;
+
         [SerializeField, Header("runtime")]
         VRMFirstPerson m_firstPerson;
+
+        [SerializeField, Header("Tracker")]
+        Transform m_headTarget;
+        [SerializeField]
+        Transform m_leftHandTarget;
+        [SerializeField]
+        Transform m_rightHandTarget;
 
         VRMBlendShapeProxy m_blendShape;
 
@@ -43,6 +54,12 @@ namespace VRM
                 var animator = m_target.GetComponent<Animator>();
                 if (animator != null)
                 {
+                    animator.runtimeAnimatorController = m_animationController;
+                    VRIK m_vrik = m_target.gameObject.AddComponent<VRIK>();
+                    m_vrik.solver.spine.headTarget = m_headTarget;
+                    m_vrik.solver.leftArm.target = m_leftHandTarget;
+                    m_vrik.solver.rightArm.target = m_rightHandTarget;
+
                     m_firstPerson.Setup();
 
                     if (m_faceCamera != null)
