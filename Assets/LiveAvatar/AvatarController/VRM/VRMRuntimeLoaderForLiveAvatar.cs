@@ -59,6 +59,9 @@ namespace VRM
                     m_vrik.solver.spine.headTarget = m_headTarget;
                     m_vrik.solver.leftArm.target = m_leftHandTarget;
                     m_vrik.solver.rightArm.target = m_rightHandTarget;
+                    m_vrik.solver.leftArm.stretchCurve = new AnimationCurve();
+                    m_vrik.solver.rightArm.stretchCurve = new AnimationCurve();
+                    VRIKCalibrator.Calibrate(m_vrik, null, m_headTarget, null, m_leftHandTarget, m_rightHandTarget, null, null);
 
                     m_firstPerson.Setup();
 
