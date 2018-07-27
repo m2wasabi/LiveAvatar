@@ -29,9 +29,9 @@ namespace LiveAvatar
         protected float BodyPosOffsetZ = -0.5f;
         protected float BodyPosYOffset;
         protected Vector3 HeadAngleOffset;
-        protected float HeadAngX = 70;
-        protected float HeadAngY = 90;
-        protected float HeadAngZ = 300;
+        protected float HeadRotateRatioY = 70;
+        protected float HeadRotateOffsetZ = 90;
+        protected float HeadRotateRatioX = -300;
         protected float LipOpenRatio = 200;
 
         private MouthController mouthController;
@@ -103,7 +103,7 @@ namespace LiveAvatar
                 BodyAnchor.transform.position = _bodyPos;
                 //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
                 var _headAng = AvarageBuffer(HeadAngBuffer);
-                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(_headAng.y, -_headAng.x, _headAng.z);
+                HeadAnchor.transform.eulerAngles = HeadAngleOffset + _headAng;
 //                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
             }
         }
@@ -161,9 +161,12 @@ namespace LiveAvatar
             Vector2 chin = points[8];
 
             // 末尾で調整(0.2は顔幅に対する唇下から顎までの比 / 300はその値に対する倍率 / 10.416はUnityちゃん初期値)
-            float xAng = (Vector2.Distance(left, center) - Vector2.Distance(right, center)) / Vector2.Distance(left, right) * HeadAngX;
-            float yAng = GetAngle(mouth, chin) - HeadAngY;
-            float zAng = (Vector2.Distance(mouth, chin) / Vector2.Distance(left, right) - 0.2f) * HeadAngZ;
+            // エラの左右と顔のセンターの比で顔の左右の向きを判別
+            float yAng = (Vector2.Distance(right, center) - Vector2.Distance(left, center)) / Vector2.Distance(left, right) * HeadRotateRatioY;
+            // 2次元画像で口の下辺と顎の先の角度(z回転) 真上が基準なのでoffset 90度を引く
+            float zAng = GetAngle(mouth, chin) - HeadRotateOffsetZ;
+            // 顎の長さと顔の横幅の比
+            float xAng = (Vector2.Distance(mouth, chin) / Vector2.Distance(left, right) - 0.2f) * HeadRotateRatioX;
 
             // 唇下と顎下の点から角度計算して頭向きに利用
             return new Vector3(xAng, yAng, zAng);
@@ -182,7 +185,7 @@ namespace LiveAvatar
         }
 
         /// <summary>
-        /// 2点感の角度を求める
+        /// 2点間の角度を求める
         /// http://qiita.com/2dgames_jp/items/60274efb7b90fa6f986a
         /// https://gist.github.com/mizutanikirin/e9a71ef994ebb5f0d912
         /// </summary>
