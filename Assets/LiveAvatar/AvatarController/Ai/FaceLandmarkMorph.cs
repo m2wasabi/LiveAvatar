@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LiveAvatar
+namespace LiveAvatar.AvatarController.Ai
 {
     public class FaceLandmarkMorph : MonoBehaviour
     {
