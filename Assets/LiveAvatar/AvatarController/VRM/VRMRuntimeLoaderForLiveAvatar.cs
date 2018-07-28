@@ -61,6 +61,10 @@ namespace VRM
                     m_vrik.solver.rightArm.target = m_rightHandTarget;
                     m_vrik.solver.leftArm.stretchCurve = new AnimationCurve();
                     m_vrik.solver.rightArm.stretchCurve = new AnimationCurve();
+                    IKSolverVR.Locomotion m_vrikLoco = m_vrik.solver.locomotion;
+                    m_vrikLoco.footDistance = 0.1f;
+                    m_vrikLoco.stepThreshold = 0.2f;
+
                     VRIKCalibrator.Calibrate(m_vrik, null, m_headTarget, null, m_leftHandTarget, m_rightHandTarget, null, null);
 
                     m_firstPerson.Setup();
