@@ -4,9 +4,10 @@ using System.IO;
 using System.Runtime.InteropServices;
 using RootMotion.FinalIK;
 using UnityEngine;
+using VRM;
 
 
-namespace VRM
+namespace LiveAvatar.AvatarController.VRM
 {
     public class VRMRuntimeLoaderForLiveAvatar : MonoBehaviour
     {
