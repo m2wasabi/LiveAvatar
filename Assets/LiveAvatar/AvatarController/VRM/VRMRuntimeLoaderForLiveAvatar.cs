@@ -91,7 +91,6 @@ namespace VRM
             }
 
             m_canvas.LoadVRMButton.onClick.AddListener(LoadVRMClicked);
-            m_canvas.LoadBVHButton.onClick.AddListener(LoadBVHClicked);
         }
 
         void LoadVRMClicked()
@@ -193,19 +192,6 @@ namespace VRM
 #endif
         }
 
-        void LoadBVHClicked()
-        {
-#if UNITY_STANDALONE_WIN
-            var path = FileDialogForWindows.FileDialog("open BVH", ".bvh");
-            if (!string.IsNullOrEmpty(path))
-            {
-                LoadBvh(path);
-            }
-#else
-            LoadBvh(Application.dataPath + "/default.bvh");
-#endif
-        }
-
         void OnLoaded(GameObject root)
         {
             root.transform.SetParent(transform, false);
@@ -217,24 +203,6 @@ namespace VRM
                 GameObject.Destroy(m_target.gameObject);
             }
             m_target = humanPoseTransfer;
-            SetupTarget();
-        }
-
-        void LoadBvh(string path)
-        {
-            Debug.LogFormat("ImportBvh: {0}", path);
-            var context = new UniHumanoid.ImporterContext
-            {
-                Path = path
-            };
-            UniHumanoid.BvhImporter.Import(context);
-
-            if (m_source != null)
-            {
-                GameObject.Destroy(m_source.gameObject);
-            }
-            m_source = context.Root.GetComponent<UniHumanoid.HumanPoseTransfer>();
-
             SetupTarget();
         }
     }
