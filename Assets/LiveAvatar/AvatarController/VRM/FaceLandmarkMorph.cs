@@ -8,7 +8,7 @@ namespace LiveAvatar.AvatarController.VRM
     {
         public GameObject BodyAnchor;
         public GameObject HeadAnchor;
-        public GameObject TargetModel;
+        public BlendShapeController BlendShapeController;
 
         private Rect _rect;
         private List<Vector2> _landmarkList;
@@ -34,8 +34,6 @@ namespace LiveAvatar.AvatarController.VRM
         protected float HeadRotateRatioX = -300;
         protected float LipOpenRatio = 200;
 
-        private MouthController mouthController;
-
         // Use this for initialization
         void Start()
         {
@@ -53,10 +51,6 @@ namespace LiveAvatar.AvatarController.VRM
             if (BodyAnchor)
             {
                 BodyPosYOffset = BodyAnchor.transform.position.y;
-            }
-            if (TargetModel)
-            {
-                mouthController = TargetModel.GetComponentInChildren<MouthController>();
             }
         }
 
@@ -88,9 +82,9 @@ namespace LiveAvatar.AvatarController.VRM
             UnshiftBuffer(BodyPosBuffer, BodyPos);
             UnshiftBuffer(HeadAngBuffer, HeadAng);
 
-            if (mouthController)
+            if (BlendShapeController)
             {
-                mouthController.MouthOpen = GetMouthOpen(_landmarkList);
+                BlendShapeController.MouthOpen = GetMouthOpen(_landmarkList);
             }
         }
 

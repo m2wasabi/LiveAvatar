@@ -4637,12 +4637,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961557374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c0a477a16694e49989e82029c54ea7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d71cdc52bc21b849a9ddd2981c68230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BodyAnchor: {fileID: 1961557374}
   HeadAnchor: {fileID: 649370951}
-  TargetModel: {fileID: 1209434958}
 --- !u!1 &2004245946 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1100041978582710, guid: bcfcb1b16ebed974ea8244e270af8d4a,
