@@ -41,6 +41,8 @@ namespace LiveAvatar.AvatarController.VRM
 
         VRMBlendShapeProxy m_blendShape;
 
+        private HandPoseController _handPoseController;
+
         void SetupTarget()
         {
             if (m_target != null)
@@ -70,6 +72,7 @@ namespace LiveAvatar.AvatarController.VRM
 
                     m_firstPerson.Setup();
 
+                    _handPoseController.InitAnimator();
                     if (m_faceCamera != null)
                     {
                         m_faceCamera.Target = animator.GetBoneTransform(HumanBodyBones.Head);
@@ -92,6 +95,8 @@ namespace LiveAvatar.AvatarController.VRM
             }
 
             m_canvas.LoadVRMButton.onClick.AddListener(LoadVRMClicked);
+
+            _handPoseController = GetComponent<HandPoseController>();
         }
 
         void LoadVRMClicked()

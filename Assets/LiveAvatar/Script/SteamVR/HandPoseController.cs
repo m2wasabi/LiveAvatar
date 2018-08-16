@@ -81,7 +81,7 @@ public class HandPoseController : MonoBehaviour {
     };
 
     void Start () {
-        _animator = GetComponent<Animator>();
+        InitAnimator();
 
         if (leftHandController != null)
         {
@@ -92,7 +92,12 @@ public class HandPoseController : MonoBehaviour {
         {
             var controller_r = rightHandController.GetComponent<SteamVR_TrackedObject>();
             _device_R = SteamVR_Controller.Input((int)controller_r.index);
-        }
+        }        
+    }
+
+    public void InitAnimator()
+    {
+        _animator = GetComponentInChildren<Animator>();
     }
 
     void Update () {
