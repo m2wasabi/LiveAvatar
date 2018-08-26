@@ -3,6 +3,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using RootMotion.FinalIK;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using VRM;
 
@@ -95,6 +97,7 @@ namespace LiveAvatar.AvatarController.VRM
             }
 
             m_canvas.LoadVRMButton.onClick.AddListener(LoadVRMClicked);
+            this.UpdateAsObservable().Where(_ => Input.GetKeyDown(KeyCode.Q)).Subscribe(_ => LoadVRMClicked());
 
             _handPoseController = GetComponent<HandPoseController>();
         }
