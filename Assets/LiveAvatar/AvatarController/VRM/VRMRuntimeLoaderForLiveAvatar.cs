@@ -85,7 +85,10 @@ namespace LiveAvatar.AvatarController.VRM
 
         private void Awake()
         {
-            SetupTarget();
+            if (m_target != null)
+            {
+                SetupTarget();
+            }
         }
 
         private void Start()
