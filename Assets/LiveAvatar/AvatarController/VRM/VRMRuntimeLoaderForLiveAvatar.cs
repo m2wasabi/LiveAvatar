@@ -12,7 +12,7 @@ namespace LiveAvatar.AvatarController.VRM
     public class VRMRuntimeLoaderForLiveAvatar : MonoBehaviour
     {
         [SerializeField]
-        bool m_loadAsync;
+        bool m_loadAsync = true;
 
         [SerializeField, Header("GUI")]
         CanvasManager m_canvas;
