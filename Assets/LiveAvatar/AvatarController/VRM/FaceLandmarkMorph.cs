@@ -94,10 +94,10 @@ namespace LiveAvatar.AvatarController.VRM
             if (isActive)
             {
                 var _bodyPos = AvarageBuffer(BodyPosBuffer);
-                BodyAnchor.transform.position = _bodyPos;
+                BodyAnchor.transform.localPosition = _bodyPos;
                 //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
                 var _headAng = AvarageBuffer(HeadAngBuffer);
-                HeadAnchor.transform.eulerAngles = HeadAngleOffset + _headAng;
+                HeadAnchor.transform.localEulerAngles = HeadAngleOffset + _headAng;
 //                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
             }
         }
