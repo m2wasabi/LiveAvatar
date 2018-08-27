@@ -29,7 +29,9 @@ namespace LiveAvatar.AvatarController.VRM
         protected float BodyPosOffsetZ = -0.5f;
         protected float BodyPosYOffset;
         protected Vector3 HeadAngleOffset;
-        protected float HeadRotateRatioY = 70;
+        protected float HeadRotateOffsetX = 0;
+        protected float HeadRotateOffsetY = 180;
+        protected float HeadRotateRatioY = -70;
         protected float HeadRotateOffsetZ = 90;
         protected float HeadRotateRatioX = -300;
         protected float LipOpenRatio = 200;
@@ -156,11 +158,11 @@ namespace LiveAvatar.AvatarController.VRM
 
             // 末尾で調整(0.2は顔幅に対する唇下から顎までの比 / 300はその値に対する倍率 / 10.416はUnityちゃん初期値)
             // エラの左右と顔のセンターの比で顔の左右の向きを判別
-            float yAng = (Vector2.Distance(right, center) - Vector2.Distance(left, center)) / Vector2.Distance(left, right) * HeadRotateRatioY;
+            float yAng = (Vector2.Distance(right, center) - Vector2.Distance(left, center)) / Vector2.Distance(left, right) * HeadRotateRatioY + HeadRotateOffsetY;
             // 2次元画像で口の下辺と顎の先の角度(z回転) 真上が基準なのでoffset 90度を引く
             float zAng = GetAngle(mouth, chin) - HeadRotateOffsetZ;
             // 顎の長さと顔の横幅の比
-            float xAng = (Vector2.Distance(mouth, chin) / Vector2.Distance(left, right) - 0.2f) * HeadRotateRatioX;
+            float xAng = (Vector2.Distance(mouth, chin) / Vector2.Distance(left, right) - 0.2f) * HeadRotateRatioX + HeadRotateOffsetX;
 
             // 唇下と顎下の点から角度計算して頭向きに利用
             return new Vector3(xAng, yAng, zAng);
