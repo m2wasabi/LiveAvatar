@@ -100,6 +100,11 @@ public class HandPoseController : MonoBehaviour {
         _animator = GetComponentInChildren<Animator>();
     }
 
+    public void SetAnimaor(Animator target)
+    {
+        _animator = target;
+    }
+
     void Update () {
         if (Input.GetKeyDown(KeyCode.F))
         {

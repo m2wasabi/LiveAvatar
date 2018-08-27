@@ -61,6 +61,7 @@ namespace LiveAvatar.AvatarController.VRM
                 {
                     animator.runtimeAnimatorController = m_animationController;
                     VRIK m_vrik = m_target.gameObject.AddComponent<VRIK>();
+                    m_vrik.AutoDetectReferences();
                     m_vrik.solver.spine.headTarget = m_headTarget;
                     m_vrik.solver.leftArm.target = m_leftHandTarget;
                     m_vrik.solver.rightArm.target = m_rightHandTarget;
@@ -74,7 +75,7 @@ namespace LiveAvatar.AvatarController.VRM
 
                     m_firstPerson.Setup();
 
-                    _handPoseController.InitAnimator();
+                    _handPoseController.SetAnimaor(animator);
                     if (m_faceCamera != null)
                     {
                         m_faceCamera.Target = animator.GetBoneTransform(HumanBodyBones.Head);

@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandController: {fileID: 1046053740}
   rightHandController: {fileID: 414008289}
-  controlType: 0
+  controlType: 1
 --- !u!1 &1161791272
 GameObject:
   m_ObjectHideFlags: 0
