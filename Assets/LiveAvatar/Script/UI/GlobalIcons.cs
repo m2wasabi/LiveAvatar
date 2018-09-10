@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -19,10 +20,7 @@ public class GlobalIcons : MonoBehaviour
 	void Start ()
 	{
 	    if (ToggleGroup == null) ToggleGroup = GetComponent<ToggleGroup>();
-	    if (ToggleGroup != null)
-	    {
-	        Toggles = ToggleGroup.ActiveToggles();
-	    }
+        Toggles = GetComponentsInChildren<Toggle>();
 
 	    if (SteamController != null)
 	    {
@@ -35,6 +33,12 @@ public class GlobalIcons : MonoBehaviour
 	
     void ToggleForward()
     {
-        Debug.Log("Toggle Forward");
+        if(!Toggles.Any()) return;
+        var target = Toggles.SkipWhile(toggle => !toggle.isOn).Skip(1).FirstOrDefault();
+        if (target == null || target.isOn)
+        {
+            target = Toggles.FirstOrDefault(toggle => !toggle.isOn);
+        }
+        target.isOn = true;
     }
 }
