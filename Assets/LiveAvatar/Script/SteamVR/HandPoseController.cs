@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
 
 public class HandPoseController : MonoBehaviour {
 
-    public GameObject leftHandController;
-    public GameObject rightHandController;
+    public GameObject LeftHandController;
+    public GameObject RightHandController;
+    public Toggle LeftHandToggle, RightHandToggle;
 
     public FingerControlType controlType = FingerControlType.TypeA;
 
@@ -48,6 +50,8 @@ public class HandPoseController : MonoBehaviour {
         right
     }
 
+    private bool shiftL = false, shiftR = false;
+
     private PoseDegreeConfig[] _poseDegreeConfigsTypeA = new PoseDegreeConfig[9]
     {
         new PoseDegreeConfig(HandPose.fist, 30),
@@ -83,14 +87,14 @@ public class HandPoseController : MonoBehaviour {
     void Start () {
         InitAnimator();
 
-        if (leftHandController != null)
+        if (LeftHandController != null)
         {
-            var controller_l = leftHandController.GetComponent<SteamVR_TrackedObject>();
+            var controller_l = LeftHandController.GetComponent<SteamVR_TrackedObject>();
             _device_L = SteamVR_Controller.Input((int)controller_l.index);
         }
-        if (rightHandController != null)
+        if (RightHandController != null)
         {
-            var controller_r = rightHandController.GetComponent<SteamVR_TrackedObject>();
+            var controller_r = RightHandController.GetComponent<SteamVR_TrackedObject>();
             _device_R = SteamVR_Controller.Input((int)controller_r.index);
         }        
     }
@@ -114,23 +118,27 @@ public class HandPoseController : MonoBehaviour {
         {
             if (_device_L != null)
             {
-                if (_device_L.GetPress(SteamVR_Controller.ButtonMask.Grip))
+                if (LeftHandToggle.isOn && _device_L.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
                 {
-                    _animator.SetInteger("LeftHandPose", updateHandPose(_device_L, Hand.left));
+                    if (_device_L.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) shiftL = true;
+                    _animator.SetInteger("LeftHandPose", updateHandPose(_device_L, Hand.left, shiftL));
                 }
+                if (_device_L.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad)) shiftL = false;
             }
             if (_device_R != null)
             {
-                if (_device_R.GetPress(SteamVR_Controller.ButtonMask.Grip))
+                if (RightHandToggle.isOn && _device_R.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
                 {
-                    _animator.SetInteger("RightHandPose", updateHandPose(_device_R, Hand.right));
+                    if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) shiftR = true;
+                    _animator.SetInteger("RightHandPose", updateHandPose(_device_R, Hand.right, shiftR));
                 }
+                if (_device_R.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad)) shiftR = false;
             }
 
         }
     }
 
-    private int updateHandPose(SteamVR_Controller.Device device, Hand hand)
+    private int updateHandPose(SteamVR_Controller.Device device, Hand hand, bool shift)
     {
         var pos = device.GetAxis();
 
@@ -162,7 +170,7 @@ public class HandPoseController : MonoBehaviour {
             }
             else
             {
-                return getPoseByDegreeWithShift(deg, device.GetPress(SteamVR_Controller.ButtonMask.Trigger));
+                return getPoseByDegreeWithShift(deg, shift);
             }
 
         }
