@@ -72,8 +72,6 @@ namespace LiveAvatar.AvatarController.VRM
                     m_vrikLoco.footDistance = 0.1f;
                     m_vrikLoco.stepThreshold = 0.2f;
 
-                    VRIKCalibrator.Calibrate(m_vrik, null, m_headTarget, null, m_leftHandTarget, m_rightHandTarget, null, null);
-
                     m_firstPerson.Setup();
 
                     _handPoseController.SetAnimaor(animator);
