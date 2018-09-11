@@ -162,7 +162,6 @@ public class HandPoseController : MonoBehaviour {
             {
                 deg = 360 - deg;
             }
-            Debug.Log(deg);
 
             if (controlType == FingerControlType.TypeA)
             {
