@@ -2370,6 +2370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f4a90c9cf8d04facb9f156470d48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RightHandController: {fileID: 414008289}
+  FaceToggle: {fileID: 2033189551}
 --- !u!1 &1161791272
 GameObject:
   m_ObjectHideFlags: 0
