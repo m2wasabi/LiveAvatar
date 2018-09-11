@@ -2353,8 +2353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6deb9ed246884ba6291d678d20fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandController: {fileID: 1046053740}
-  rightHandController: {fileID: 414008289}
+  LeftHandController: {fileID: 1046053740}
+  RightHandController: {fileID: 414008289}
+  LeftHandToggle: {fileID: 1945849034}
+  RightHandToggle: {fileID: 536820581}
   controlType: 1
 --- !u!1 &1161791272
 GameObject:
@@ -2521,8 +2523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6deb9ed246884ba6291d678d20fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandController: {fileID: 1046053740}
-  rightHandController: {fileID: 414008289}
+  LeftHandController: {fileID: 0}
+  RightHandController: {fileID: 0}
+  LeftHandToggle: {fileID: 0}
+  RightHandToggle: {fileID: 0}
   controlType: 1
 --- !u!114 &1209434960
 MonoBehaviour:
