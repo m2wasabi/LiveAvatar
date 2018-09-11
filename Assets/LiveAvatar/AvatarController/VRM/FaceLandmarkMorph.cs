@@ -34,7 +34,7 @@ namespace LiveAvatar.AvatarController.VRM
         protected float HeadRotateRatioY = -70;
         protected float HeadRotateOffsetZ = 90;
         protected float HeadRotateRatioX = -300;
-        protected float LipOpenRatio = 200;
+        protected float LipOpenRatio = 2;
 
         // Use this for initialization
         void Start()

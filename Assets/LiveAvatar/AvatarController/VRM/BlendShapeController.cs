@@ -5,7 +5,8 @@ using VRM;
 
 namespace LiveAvatar.AvatarController.VRM
 {
-    public class BlendShapeController : MonoBehaviour {
+    public class BlendShapeController : MonoBehaviour
+    {
 
         public float MouthOpen { get; set; }
 
@@ -15,12 +16,20 @@ namespace LiveAvatar.AvatarController.VRM
         }
 	
         void Update () {
-		
+            if (m_blendShapePloxy)
+            {
+                m_blendShapePloxy.SetValue(BlendShapePreset.A, MouthOpen);
+            }
         }
 
-        public void setup()
+        public void Setup()
         {
             m_blendShapePloxy = gameObject.GetComponentInChildren<VRMBlendShapeProxy>();
+        }
+
+        public void Setup(VRMBlendShapeProxy blendShapeProxy)
+        {
+            m_blendShapePloxy = blendShapeProxy;
         }
     }
 }

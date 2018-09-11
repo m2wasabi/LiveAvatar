@@ -2297,6 +2297,7 @@ GameObject:
   - component: {fileID: 1117432736}
   - component: {fileID: 1117432735}
   - component: {fileID: 1117432737}
+  - component: {fileID: 1117432738}
   m_Layer: 0
   m_Name: VRMRuntimeLoader
   m_TagString: Untagged
@@ -2358,6 +2359,17 @@ MonoBehaviour:
   LeftHandToggle: {fileID: 1945849034}
   RightHandToggle: {fileID: 536820581}
   controlType: 1
+--- !u!114 &1117432738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117432734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030f4a90c9cf8d04facb9f156470d48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1161791272
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5304,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114196651160111284, guid: 0354ce119bc31ea4da1e245ecca1b754,
+        type: 2}
+      propertyPath: BlendShapeController
+      value: 
+      objectReference: {fileID: 1117432738}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0354ce119bc31ea4da1e245ecca1b754, type: 2}
   m_IsPrefabParent: 0
