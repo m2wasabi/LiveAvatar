@@ -8,37 +8,41 @@ using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 
-public class GlobalIcons : MonoBehaviour
+namespace LiveAvatar.UI
 {
-
-    private ToggleGroup ToggleGroup;
-    private IEnumerable<Toggle> Toggles;
-
-    public SteamVR_TrackedObject SteamController;
-    private SteamVR_Controller.Device _device;
-    
-	void Start ()
-	{
-	    if (ToggleGroup == null) ToggleGroup = GetComponent<ToggleGroup>();
-        Toggles = GetComponentsInChildren<Toggle>();
-
-	    if (SteamController != null)
-	    {
-	        _device = SteamVR_Controller.Input((int) SteamController.index);
-	        this.UpdateAsObservable()
-	            .Where(_ => _device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
-	            .Subscribe(_ => ToggleForward());
-	    }
-	}
-	
-    void ToggleForward()
+    public class GlobalIcons : MonoBehaviour
     {
-        if(!Toggles.Any()) return;
-        var target = Toggles.SkipWhile(toggle => !toggle.isOn).Skip(1).FirstOrDefault();
-        if (target == null || target.isOn)
+
+        private ToggleGroup ToggleGroup;
+        private IEnumerable<Toggle> Toggles;
+
+        public SteamVR_TrackedObject SteamController;
+        private SteamVR_Controller.Device _device;
+    
+        void Start ()
         {
-            target = Toggles.FirstOrDefault(toggle => !toggle.isOn);
+            if (ToggleGroup == null) ToggleGroup = GetComponent<ToggleGroup>();
+            Toggles = GetComponentsInChildren<Toggle>();
+
+            if (SteamController != null)
+            {
+                _device = SteamVR_Controller.Input((int) SteamController.index);
+                this.UpdateAsObservable()
+                    .Where(_ => _device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+                    .Subscribe(_ => ToggleForward());
+            }
         }
-        target.isOn = true;
+	
+        void ToggleForward()
+        {
+            if(!Toggles.Any()) return;
+            var target = Toggles.SkipWhile(toggle => !toggle.isOn).Skip(1).FirstOrDefault();
+            if (target == null || target.isOn)
+            {
+                target = Toggles.FirstOrDefault(toggle => !toggle.isOn);
+            }
+            target.isOn = true;
+        }
     }
 }
+
