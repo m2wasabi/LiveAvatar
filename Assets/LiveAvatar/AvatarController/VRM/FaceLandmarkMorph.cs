@@ -136,7 +136,7 @@ namespace LiveAvatar.AvatarController.VRM
             yPos += BodyPosYOffset;
 
             // 顔の大きさと中心から初期位置分ずらして体位置に利用
-            return new Vector3(-xPos, yPos, zPos);
+            return new Vector3(xPos, yPos, zPos);
         }
 
         /// <summary>
