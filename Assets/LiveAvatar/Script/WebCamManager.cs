@@ -180,11 +180,13 @@ namespace LiveAvatar
                 // Checks how many and which cameras are available on the device
                 for (int cameraIndex = 0; cameraIndex < WebCamTexture.devices.Length; cameraIndex++)
                 {
+                    Debug.Log("Device.name : " + WebCamTexture.devices[cameraIndex].name);
                     if (WebCamTexture.devices[cameraIndex].isFrontFacing == requestedIsFrontFacing)
                     {
 
                         webCamDevice = WebCamTexture.devices[cameraIndex];
                         webCamTexture = new WebCamTexture(webCamDevice.name, requestedWidth, requestedHeight, requestedFPS);
+                        Debug.Log("Device.name : " + webCamDevice.name);
 
                         break;
                     }
