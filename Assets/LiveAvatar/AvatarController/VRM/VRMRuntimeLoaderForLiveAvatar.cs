@@ -122,14 +122,14 @@ namespace LiveAvatar.AvatarController.VRM
             var bytes = File.ReadAllBytes(path);
             // なんらかの方法でByte列を得た
 
-            var context = new VRMImporterContext(UniGLTF.UnityPath.FromFullpath(path));
+            var context = new VRMImporterContext();
 
             // GLB形式でJSONを取得しParseします
             context.ParseGlb(bytes);
 
 
             // metaを取得(todo: thumbnailテクスチャのロード)
-            var meta = context.ReadMeta();
+            var meta = context.ReadMeta(true);
             Debug.LogFormat("meta: title:{0}", meta.Title);
 
 
