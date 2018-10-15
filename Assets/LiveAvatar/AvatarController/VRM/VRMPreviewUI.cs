@@ -80,14 +80,11 @@ namespace LiveAvatar.AvatarController.VRM
         [SerializeField]
         TextFields m_texts;
 
-        // Use this for initialization
-        void Start () {
-		
-        }
-	
-        // Update is called once per frame
-        void Update () {
-		
+        public Button m_ok, m_cancel;
+
+        public void destroyMe()
+        {
+            Destroy(transform.parent.gameObject);
         }
     }
 }
