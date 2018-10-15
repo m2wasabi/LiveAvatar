@@ -82,6 +82,11 @@ namespace LiveAvatar.AvatarController.VRM
 
         public Button m_ok, m_cancel;
 
+        public void setMeta(VRMMetaObject meta)
+        {
+            m_texts.UpdateMeta(meta);
+        }
+
         public void destroyMe()
         {
             Destroy(transform.parent.gameObject);

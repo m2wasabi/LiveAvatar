@@ -22,6 +22,9 @@ namespace LiveAvatar.AvatarController.VRM
         [SerializeField]
         LookTarget m_faceCamera;
 
+        [SerializeField]
+        GameObject m_modalWindowPrefab;
+
         [SerializeField, Header("loader")]
         UniHumanoid.HumanPoseTransfer m_source;
 
@@ -131,18 +134,22 @@ namespace LiveAvatar.AvatarController.VRM
             // metaを取得(todo: thumbnailテクスチャのロード)
             var meta = context.ReadMeta(true);
             Debug.LogFormat("meta: title:{0}", meta.Title);
-
-
-            // ParseしたJSONをシーンオブジェクトに変換していく
-            if (m_loadAsync)
+            GameObject modalObject = Instantiate(m_modalWindowPrefab, m_canvas.transform) as GameObject;
+            var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
+            modalUI.setMeta(meta);
+            modalUI.m_ok.onClick.AsObservable().Subscribe(_ =>
             {
-                LoadAsync(context);
-            }
-            else
-            {
-                VRMImporter.LoadFromBytes(context);
-                OnLoaded(context.Root);
-            }
+                // ParseしたJSONをシーンオブジェクトに変換していく
+                if (m_loadAsync)
+                {
+                    LoadAsync(context);
+                }
+                else
+                {
+                    VRMImporter.LoadFromBytes(context);
+                    OnLoaded(context.Root);
+                }
+            }).AddTo(modalObject);
         }
 
         /// <summary>
