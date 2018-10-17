@@ -82,17 +82,17 @@ namespace LiveAvatar.AvatarController.VRM
                 m_textModelContact.text = meta.ContactInformation;
                 m_textModelReference.text = meta.Reference;
 
-                m_textPermissionAllowed.text = meta.AllowedUser.ToString();
+                m_textPermissionAllowed.text = m_textAllowedUser[(int) meta.AllowedUser];
                 m_iconPermissionAllowed.texture = m_textureAllowedUser[(int) meta.AllowedUser];
-                m_textPermissionViolent.text = meta.ViolentUssage.ToString();
+                m_textPermissionViolent.text = m_textUsage[(int) meta.ViolentUssage];
                 m_iconPermissionViolent.texture = m_textureViolentUssage[(int) meta.ViolentUssage];
-                m_textPermissionSexual.text = meta.SexualUssage.ToString();
+                m_textPermissionSexual.text = m_textUsage[(int) meta.SexualUssage];
                 m_iconPermissionSexual.texture = m_textureSexualUssage[(int) meta.SexualUssage];
-                m_textPermissionCommercial.text = meta.CommercialUssage.ToString();
+                m_textPermissionCommercial.text = m_textUsage[(int) meta.CommercialUssage];
                 m_iconPermissionCommercial.texture = m_textureCommercialUssage[(int) meta.CommercialUssage];
                 m_textPermissionOther.text = meta.OtherPermissionUrl;
 
-                m_textDistributionLicense.text = meta.LicenseType.ToString();
+                m_textDistributionLicense.text = m_textLicenseType[(int) meta.LicenseType];
                 m_textDistributionOther.text = meta.OtherLicenseUrl;
 
                 if(meta.Thumbnail)
@@ -102,6 +102,20 @@ namespace LiveAvatar.AvatarController.VRM
         [SerializeField]
         TextFields m_texts;
 
+        static readonly string[] m_textAllowedUser = {"作者のみ", "許可された人限定", "全員に許可"};
+        static readonly string[] m_textUsage = {"不許可", "許可"};
+        static readonly string[] m_textLicenseType = {
+            "再配布禁止", 
+            "著作権放棄(CC0)", 
+            "表示 (CC BY 4.0)", 
+            "表示 非営利 (CC BY-NC 4.0)",
+            "表示 継承 (CC BY-SA 4.0)",
+            "表示 非営利 継承 (CC BY-NC-SA 4.0)",
+            "表示 改変禁止 (CC BY-ND 4.0)",
+            "表示 非営利 改変禁止 (CC BY-NC-ND 4.0)",
+            "その他" 
+        };
+        
         public Button m_ok, m_cancel;
 
         public void setMeta(VRMMetaObject meta)
