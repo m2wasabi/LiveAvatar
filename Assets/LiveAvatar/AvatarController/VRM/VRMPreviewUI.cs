@@ -123,6 +123,11 @@ namespace LiveAvatar.AvatarController.VRM
             m_texts.UpdateMeta(meta);
         }
 
+        public void setLoadable(bool loadable)
+        {
+            m_ok.interactable = loadable;
+        }
+
         public void destroyMe()
         {
             Destroy(transform.parent.gameObject);
