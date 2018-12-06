@@ -11,6 +11,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
     public Transform origin;
 
     CVRSystem _vrSystem;
+    [SerializeField]
     List<int> _validDeviceIds = new List<int>();
 
     void Start()
@@ -38,7 +39,10 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
             {
                 Debug.Log("OpenVR device at " + i + ": " + deviceClass);
                 _validDeviceIds.Add((int)i);
-                targetObjs[_validDeviceIds.Count - 1].SetActive(true);
+                var idx = _validDeviceIds.Count - 1;
+                targetObjs[idx].SetActive(true);
+                var to = targetObjs[idx].GetComponent<SteamVR_TrackedObject>();
+                if (to != null) { to.index = (SteamVR_TrackedObject.EIndex)i; }
             }
         }
     }
