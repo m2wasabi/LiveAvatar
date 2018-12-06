@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRM;
 
-namespace LiveAvatar.AvatarController.VRM
+namespace LiveAvatar.AvatarController.VRM.UI
 {
     public class VRMPreviewUI : MonoBehaviour {
         [Serializable]
