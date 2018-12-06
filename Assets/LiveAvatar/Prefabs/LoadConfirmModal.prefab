@@ -191,7 +191,6 @@ GameObject:
   - component: {fileID: 224043002578822270}
   - component: {fileID: 222594783706972806}
   - component: {fileID: 114950194419234472}
-  - component: {fileID: 114315355925013218}
   m_Layer: 5
   m_Name: LoadConfirmPanel
   m_TagString: Untagged
@@ -361,6 +360,7 @@ GameObject:
   - component: {fileID: 224739674045519424}
   - component: {fileID: 222535316492963694}
   - component: {fileID: 114146062183533804}
+  - component: {fileID: 114681297956073470}
   m_Layer: 5
   m_Name: LoadConfirmModal
   m_TagString: Untagged
@@ -999,50 +999,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u30E9\u30A4\u30BB\u30F3\u30B9\u30BF\u30A4\u30D7"
---- !u!114 &114315355925013218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202211764631842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7699b731562ee488a84248579b4694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_texts:
-    m_textModelTitle: {fileID: 114419233427266880}
-    m_textModelVersion: {fileID: 114605309131266886}
-    m_textModelAuthor: {fileID: 114730839969788188}
-    m_textModelContact: {fileID: 114926724948707528}
-    m_textModelReference: {fileID: 114559449804941550}
-    m_thumbnail: {fileID: 114782629989560200}
-    m_textPermissionAllowed: {fileID: 114036584594683598}
-    m_iconPermissionAllowed: {fileID: 114054267762498332}
-    m_textPermissionViolent: {fileID: 114787285370981152}
-    m_iconPermissionViolent: {fileID: 114604360225162348}
-    m_textPermissionSexual: {fileID: 114357688298859476}
-    m_iconPermissionSexual: {fileID: 114546449854561050}
-    m_textPermissionCommercial: {fileID: 114169864405088252}
-    m_iconPermissionCommercial: {fileID: 114142787033529186}
-    m_textPermissionOther: {fileID: 114473287447363476}
-    m_textDistributionLicense: {fileID: 114106801773653954}
-    m_textDistributionOther: {fileID: 114090889078758262}
-    m_textureAllowedUser:
-    - {fileID: 2800000, guid: 76e2afa4b9477114c9f4a9304d44d7ab, type: 3}
-    - {fileID: 2800000, guid: 91c2c867b7ea98a469fce2ddda5f5ef1, type: 3}
-    - {fileID: 2800000, guid: d343e054f441d9b41a7c09975cd7f570, type: 3}
-    m_textureViolentUssage:
-    - {fileID: 2800000, guid: d1c5ee373758ea541977c13afd31455f, type: 3}
-    - {fileID: 2800000, guid: c6533552920e9104e8f4c63dcff65c39, type: 3}
-    m_textureSexualUssage:
-    - {fileID: 2800000, guid: 855d635882844ad4d8b7ca4c349ef695, type: 3}
-    - {fileID: 2800000, guid: 3a12440e845aca84caf154f840a0c537, type: 3}
-    m_textureCommercialUssage:
-    - {fileID: 2800000, guid: ef50835587b37544e8f9519883f02fc6, type: 3}
-    - {fileID: 2800000, guid: 54ba0b9f777fb2840b5127a63308b58d, type: 3}
-  m_ok: {fileID: 114852743041473586}
-  m_cancel: {fileID: 114943970561385666}
 --- !u!114 &114338490444783192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1448,6 +1404,50 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Version
+--- !u!114 &114681297956073470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417642719711440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7699b731562ee488a84248579b4694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_texts:
+    m_textModelTitle: {fileID: 114419233427266880}
+    m_textModelVersion: {fileID: 114605309131266886}
+    m_textModelAuthor: {fileID: 114730839969788188}
+    m_textModelContact: {fileID: 114926724948707528}
+    m_textModelReference: {fileID: 114559449804941550}
+    m_thumbnail: {fileID: 114782629989560200}
+    m_textPermissionAllowed: {fileID: 114036584594683598}
+    m_iconPermissionAllowed: {fileID: 114054267762498332}
+    m_textPermissionViolent: {fileID: 114787285370981152}
+    m_iconPermissionViolent: {fileID: 114604360225162348}
+    m_textPermissionSexual: {fileID: 114357688298859476}
+    m_iconPermissionSexual: {fileID: 114546449854561050}
+    m_textPermissionCommercial: {fileID: 114169864405088252}
+    m_iconPermissionCommercial: {fileID: 114142787033529186}
+    m_textPermissionOther: {fileID: 114473287447363476}
+    m_textDistributionLicense: {fileID: 114106801773653954}
+    m_textDistributionOther: {fileID: 114090889078758262}
+    m_textureAllowedUser:
+    - {fileID: 2800000, guid: 76e2afa4b9477114c9f4a9304d44d7ab, type: 3}
+    - {fileID: 2800000, guid: 91c2c867b7ea98a469fce2ddda5f5ef1, type: 3}
+    - {fileID: 2800000, guid: d343e054f441d9b41a7c09975cd7f570, type: 3}
+    m_textureViolentUssage:
+    - {fileID: 2800000, guid: d1c5ee373758ea541977c13afd31455f, type: 3}
+    - {fileID: 2800000, guid: c6533552920e9104e8f4c63dcff65c39, type: 3}
+    m_textureSexualUssage:
+    - {fileID: 2800000, guid: 855d635882844ad4d8b7ca4c349ef695, type: 3}
+    - {fileID: 2800000, guid: 3a12440e845aca84caf154f840a0c537, type: 3}
+    m_textureCommercialUssage:
+    - {fileID: 2800000, guid: ef50835587b37544e8f9519883f02fc6, type: 3}
+    - {fileID: 2800000, guid: 54ba0b9f777fb2840b5127a63308b58d, type: 3}
+  m_ok: {fileID: 114852743041473586}
+  m_cancel: {fileID: 114943970561385666}
 --- !u!114 &114730839969788188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114315355925013218}
+      - m_Target: {fileID: 0}
         m_MethodName: destroyMe
         m_Mode: 1
         m_Arguments:
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114315355925013218}
+      - m_Target: {fileID: 0}
         m_MethodName: destroyMe
         m_Mode: 1
         m_Arguments:
