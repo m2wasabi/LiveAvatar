@@ -7,7 +7,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using VRM;
-
+using LiveAvatar.AvatarController.VRM.UI;
 
 namespace LiveAvatar.AvatarController.VRM
 {
