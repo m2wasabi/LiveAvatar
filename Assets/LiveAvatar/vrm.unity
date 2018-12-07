@@ -2744,6 +2744,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 205084277}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &489829304
@@ -6205,6 +6216,7 @@ GameObject:
   - component: {fileID: 1117432735}
   - component: {fileID: 1117432737}
   - component: {fileID: 1117432738}
+  - component: {fileID: 1117432739}
   m_Layer: 0
   m_Name: VRMRuntimeLoader
   m_TagString: Untagged
@@ -6284,6 +6296,22 @@ MonoBehaviour:
     Name: 
     Preset: 0
   EmotionMag: 0
+--- !u!114 &1117432739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117432734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc4879804c097d42ba534aa69973d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightHandController: {fileID: 414008289}
+  AutoEmote: 1
+  AutoDetectedFace:
+    Name: 
+    Preset: 0
 --- !u!1 &1138632320
 GameObject:
   m_ObjectHideFlags: 0
@@ -8287,7 +8315,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1431097597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 205084277}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1431097597
@@ -11766,6 +11805,11 @@ Prefab:
       propertyPath: BlendShapeController
       value: 
       objectReference: {fileID: 1117432738}
+    - target: {fileID: 114196651160111284, guid: 0354ce119bc31ea4da1e245ecca1b754,
+        type: 2}
+      propertyPath: FaceExpressionController
+      value: 
+      objectReference: {fileID: 1117432739}
     - target: {fileID: 114298643479670416, guid: 0354ce119bc31ea4da1e245ecca1b754,
         type: 2}
       propertyPath: CalibrationUI
