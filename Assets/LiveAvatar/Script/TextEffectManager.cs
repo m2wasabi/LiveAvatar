@@ -10,6 +10,7 @@ namespace LiveAvatar
     {
 
         [SerializeField] private Text frontText;
+        [SerializeField] private Text monitorText;
         private SpeechApi _speechApi;
         public bool speech = false;
 
@@ -25,6 +26,7 @@ namespace LiveAvatar
                 Voice(text); 
             }
             TriggerFrontText(text);
+            TriggerMonitorText(text);
         }
 
         void TriggerFrontText(string text)
@@ -33,6 +35,15 @@ namespace LiveAvatar
             Observable.Timer(TimeSpan.FromSeconds(10))
                 .Where(_ => frontText.text == text)
                 .Subscribe(_ => frontText.text = "")
+                .AddTo(gameObject);
+        }
+
+        void TriggerMonitorText(string text)
+        {
+            monitorText.text = text;
+            Observable.Timer(TimeSpan.FromSeconds(10))
+                .Where(_ => monitorText.text == text)
+                .Subscribe(_ => monitorText.text = "")
                 .AddTo(gameObject);
         }
 
