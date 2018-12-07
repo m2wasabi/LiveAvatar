@@ -12,9 +12,11 @@ public class TrackingCalibrator : MonoBehaviour
     public GameObject leftHandGuide;
     public GameObject rightHandGuide;
 
-    public GameObject trackingOffset;
+    public Transform trackingOffset;
 
     private SteamVR_Controller.Device _device_L,_device_R;
+
+    public GameObject CalibrationUI;
 
     void Start ()
     {
@@ -34,7 +36,7 @@ public class TrackingCalibrator : MonoBehaviour
     void Update () {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            calibratingMode = !calibratingMode;
+            SetCalibrationStatus(!calibratingMode);
             return;
         }
 
@@ -43,7 +45,7 @@ public class TrackingCalibrator : MonoBehaviour
             || (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) &&
                 _device_L.GetPress(SteamVR_Controller.ButtonMask.ApplicationMenu)))
         {
-            calibratingMode = true;
+            SetCalibrationStatus(true);
             return;
         }
 
@@ -62,11 +64,17 @@ public class TrackingCalibrator : MonoBehaviour
                 var _rot = Quaternion.FromToRotation(trackVectorL2R, guideVectorL2R);
 
                 // transform
-                trackingOffset.transform.position += guideNeckPos - _rot * trackNeckPos;
-                trackingOffset.transform.rotation = _rot * trackingOffset.transform.rotation ;
+                trackingOffset.position += guideNeckPos - _rot * trackNeckPos;
+                trackingOffset.rotation = _rot * trackingOffset.rotation ;
 
-                calibratingMode = false;
+                SetCalibrationStatus(false);
             }
         }
+    }
+
+    public void SetCalibrationStatus(bool stat)
+    {
+        calibratingMode = stat;
+        CalibrationUI.SetActive(stat);
     }
 }

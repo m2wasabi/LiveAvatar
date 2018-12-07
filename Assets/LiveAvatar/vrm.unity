@@ -813,6 +813,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &167988652 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4046812782841708, guid: 0354ce119bc31ea4da1e245ecca1b754,
+    type: 2}
+  m_PrefabInternal: {fileID: 2071977277}
 --- !u!4 &168938795 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4236912519050090, guid: bcfcb1b16ebed974ea8244e270af8d4a,
@@ -1918,7 +1923,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 489829304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 760095429}
+        m_MethodName: SetCalibrationStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &489829304
@@ -2400,7 +2416,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 567411864}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 760095429}
+        m_MethodName: SetCalibrationStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &567411864
@@ -3060,6 +3087,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4990115783454832, guid: bcfcb1b16ebed974ea8244e270af8d4a,
     type: 2}
   m_PrefabInternal: {fileID: 1057224126}
+--- !u!114 &760095429 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114298643479670416, guid: 0354ce119bc31ea4da1e245ecca1b754,
+    type: 2}
+  m_PrefabInternal: {fileID: 2071977277}
+  m_Script: {fileID: 11500000, guid: 0b2b491e77bff1a429033c0a22196d60, type: 3}
 --- !u!4 &821503191 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4867351836974190, guid: bcfcb1b16ebed974ea8244e270af8d4a,
@@ -8819,6 +8852,16 @@ Prefab:
       propertyPath: BlendShapeController
       value: 
       objectReference: {fileID: 1117432738}
+    - target: {fileID: 114298643479670416, guid: 0354ce119bc31ea4da1e245ecca1b754,
+        type: 2}
+      propertyPath: trackingOffset
+      value: 
+      objectReference: {fileID: 167988652}
+    - target: {fileID: 114298643479670416, guid: 0354ce119bc31ea4da1e245ecca1b754,
+        type: 2}
+      propertyPath: CalibrationUI
+      value: 
+      objectReference: {fileID: 898590771}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0354ce119bc31ea4da1e245ecca1b754, type: 2}
   m_IsPrefabParent: 0
