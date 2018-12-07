@@ -9,20 +9,49 @@ HMDを使わずにバーチャルユーチューバーになれるキットで�
 + Webカメラ(視野角60°ぐらいを想定)
 + モニタ(2画面)
 
+※おすすめは、ゲーミングノートに外部モニタを1枚繋ぐ構成です。
+
+## ソフトウェア要件
+
+音声認識やボイロに喋らせたい場合、以下のソフトウェアが追加で必要になります。
+
++ Windows10 (Windowsの音声認識を使っています)
++ [SeikaCenter](https://hgotoh.jp/wiki/doku.php/documents/voiceroid/seikacenter/seikacenter-001)
++ [VOICEROID](https://www.ah-soft.com/voiceroid/)（+や2でも可）
++ CeVIOやSofTalkでもできるらしいけど未検証
+
 ## HMD無しでSteamVRを起動する
 
 以下を参考に手順を実施すると使えます。
 
 ### SteamVRのベータ版をインストール
 
-[【Unity】VR ReadyでないPCでVive Trackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/03/30/231703)
+* Steamの『ライブラリ』から『SteamVR』を探して、『プロパティ』ウィンドウを開き、β版をインストールする。
+
+> [【Unity】VR ReadyでないPCでVive Trackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/03/30/231703)
 
 ### HMD必須にしない設定変更
-[【Unity】ViveのHMDなしにTrackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/01/08/034418)
 
-### Init_HmdNotFoundPresenceFailed エラーを潰す
+以下のファイルを探し出し、テキストエディタで編集します。
 
-[HTC Vive TrackerをUnityでHMDレスで使いたい時に出るエラーを回避する | しゃの](http://d.hatena.ne.jp/syan0/20180316/1521199910)
+`<Steamのインストール先>/steamapps/common/SteamVR/resources/settings/default.vrsettings`
+
+編集するのは2項目。
+
++ `steamvr.requireHmd` : `false`
++ `steamvr.activateMultipleDrivers` : `true`
+
+```
+{
+	"steamvr": {
+		"requireHmd": false,
+～中略～
+		"activateMultipleDrivers": true,
+～略～
+```
+
+> [【Unity】ViveのHMDなしにTrackerを使う | てんちょーの技術日誌](http://shop-0761.hatenablog.com/entry/2018/01/08/034418)
+> [HTC Vive TrackerをUnityでHMDレスで使いたい時に出るエラーを回避する | しゃの](http://d.hatena.ne.jp/syan0/20180316/1521199910)
 
 ### 先にViveコントローラーの電源を入れてからStreamVRを起動する
 
@@ -39,6 +68,11 @@ HMDを使わずにバーチャルユーチューバーになれるキットで�
 1. インターネットを切断した状態でSteamVRを起動する
 2. オフラインモードで起動するか聞かれるので、オフラインモードにする
 3. SteamVRが起動してコントローラーを認識した後、インターネットにつなぐ
+4. PC再起動
+5. アップデートに失敗する場合、一度のSteamVRモニタを直接起動する
+
+`<Steamのインストール先>/steamapps/common/SteamVR/bin/win32/vrmonitor.exe` 
+
 
 ## 操作方法
 
@@ -53,34 +87,68 @@ HMDを使わずにバーチャルユーチューバーになれるキットで�
 
 |キー|効果|
 |---|---|
-|I|キャリブレーションモード ON/OFF|
-|H|エモーションのヘルプ表示|
-|↑↓|台詞の選択|
+|ESC|設定メニュー呼び出し|
+|TAB|VRMロード|
 |Space|台詞の表示/非表示|
-|G|グリーンバックの切り替え|
-|F|手のポーズの操作変更(test版:4方向+トリガーシフト/8方向)|
 
 ### Viveコントローラ操作
 
 |操作|効果|
 |---|---|
-|右手メニューボタン<br>+<br>左手メニューボタン|キャリブレーションモードON|
-|キャリブレーションモード中に<br>両手を広げて右手トリガー|キャリブレーション|
-|右手メニューボタン|カメラ目線ON/OFF|
-|右手トラックパッドクリック<br>の後にトラックパッドをスライド|表情切替え(表情は下図参照)|
-|左手メニューボタン|台詞ウィンドウのON/OFF|
+|トラックパッドクリック<br>の後にトラックパッドを軽くスライド|手のフォーム切替え1|
+|トラックパッドクリック<br>の後にトラックパッドを重くスライド|手のフォーム切替え2|
+|右手トリガーを引きながら<br>トラックパッドをスライド|表情切替え(表情Manual時)|
 |左手トラックパッドの上下クリック|台詞ウィンドウの選択移動|
-|左手トリガー|台詞表示|
-|グリップボタンを押しながら<br>トラックパッドをスライド|手のポーズ切替(ポーズは下図参照)|
-|グリップボタンを押しながら<br>さらにトリガーを引きつつ<br>トラックパッドをスライド|手のポーズ切替(ポーズは下図参照)|
+|左手トリガーを引く|台詞選択モード / 音声認識のON/OFF|
+|左手トリガーを引きながら<br>左手トラックパッドの上下クリック|台詞選択|
+|左手トリガーを放す|台詞決定|
+|左手メニューボタン|台詞ウィンドウのON/OFF|
 
 ### エモーション図解
-![エモーション](https://github.com/m2wasabi/LiveAvatar/raw/ViveController/Assets/FaceTrack/Images/manual.png)
+<s>![エモーション](https://github.com/m2wasabi/LiveAvatar/raw/ViveController/Assets/FaceTrack/Images/manual.png)</s>
 
 ### 台詞のインストール
 
 `LiveAvatar_Data/scenario.txt`(Editor上ではAssets直下) ファイルを作成し、
 テキストを書く(文字コードはUTF-8で)
+
+### 音声認識
+
+Windowsでマイクを認識させたあと、『Windowsの設定』→『プライバシー』→『音声認識、手書き入力、入力の設定』で【音声認識サービスをオンにします】をクリックする
+
+### VOICEROID連携
+
+1. VOICEROID*、SeikaCenter、SeikaServerCompact をインストールする
+2. VOICEROID*を起動する
+3. SeikaCenterを起動し、サービスを開始する
+4. `SeikaServerCompact.json` を編集し、SeikaServerCompactを起動する(面倒なら `run.bat` から起動できます)
+
+`SeikaServerCompact.json` の設定例
+
+```
+{
+  "Addr": "*",
+  "Port": 7180,
+  "WorkDir": "./work",
+  "HtmlDir": "./html",
+
+  "User": "local",
+  "Password": "password",
+
+  "HtmlContents": {
+    ".html": "text/html; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".js": "text/javascript; charset=utf-8",
+    ".json": "applocation/json; charset=utf-8",
+    ".jpg": "image/jpeg",
+    ".png": "image/png",
+    ".gif": "image/gif",
+    ".wav": "audio/wav",
+    ".ico": "image/x-icon"
+  }
+}
+```
+
 
 ## ビルド方法
 
@@ -91,19 +159,16 @@ HMDを使わずにバーチャルユーチューバーになれるキットで�
 #### UniRx
 https://assetstore.unity.com/packages/tools/unirx-reactive-extensions-for-unity-17276
 
-#### SteamVR Plugin
-https://assetstore.unity.com/packages/templates/systems/steamvr-plugin-32647
+#### SteamVR Plugin 1.2.3
+https://github.com/ValveSoftware/steamvr_unity_plugin/releases/tag/1.2.3
+
+AssetStoreからダウンロードすると2.0.x しか手に入らないので、GitHubから入手します
+
 #### Final IK
 https://assetstore.unity.com/packages/tools/animation/final-ik-14290
 
 #### Dlib FaceLandmark Detector
 https://assetstore.unity.com/packages/tools/integration/dlib-facelandmark-detector-64314
-
-#### Dynamic Bone
-https://assetstore.unity.com/packages/tools/animation/dynamic-bone-16743
-
-#### Ai
-https://assetstore.unity.com/packages/3d/characters/ai-80561
 
 #### ”日本の教室”モデル
 https://assetstore.unity.com/packages/3d/props/interior/japanese-classroom-model-71392
