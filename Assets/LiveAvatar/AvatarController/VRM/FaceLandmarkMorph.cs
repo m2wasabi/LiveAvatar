@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRM;
 
 namespace LiveAvatar.AvatarController.VRM
 {
     public class FaceLandmarkMorph : MonoBehaviour
     {
+        public GameObject TrackedCamera;
         public GameObject BodyAnchor;
         public GameObject HeadAnchor;
         public BlendShapeController BlendShapeController;
+        public FaceExpressionController FaceExpressionController;
 
         private Rect _rect;
         private List<Vector2> _landmarkList;
@@ -16,7 +19,9 @@ namespace LiveAvatar.AvatarController.VRM
 
         private Vector2Int WebCameraScreenSize = new Vector2Int(320,240);
 
+        [SerializeField]
         private Vector3 BodyPos;
+        [SerializeField]
         private Vector3 HeadAng;
 
         private Vector3[] BodyPosBuffer = new Vector3[5];
@@ -26,15 +31,17 @@ namespace LiveAvatar.AvatarController.VRM
         protected float BodyPosX = 3;
         protected float BodyPosY = 3;
         protected float BodyPosRatioZ = 1.2f;
-        protected float BodyPosOffsetZ = -0.5f;
-        protected float BodyPosYOffset;
+        protected float BodyPosOffsetZ = 0.0f;
         protected Vector3 HeadAngleOffset;
         protected float HeadRotateOffsetX = 0;
-        protected float HeadRotateOffsetY = 180;
+        protected float HeadRotateOffsetY = 0;
         protected float HeadRotateRatioY = -70;
         protected float HeadRotateOffsetZ = 90;
         protected float HeadRotateRatioX = -300;
         protected float LipOpenRatio = 2;
+
+        [SerializeField]
+        private float smileParam;
 
         // Use this for initialization
         void Start()
@@ -44,15 +51,11 @@ namespace LiveAvatar.AvatarController.VRM
             WebCameraScreenSize.y = WebCamManager.Instance.requestedHeight;
             if (HeadAnchor)
             {
-                HeadAngleOffset = HeadAnchor.transform.eulerAngles;
+                HeadAngleOffset = HeadAnchor.transform.localEulerAngles;
             }
             else
             {
                 HeadAngleOffset = Vector3.zero;
-            }
-            if (BodyAnchor)
-            {
-                BodyPosYOffset = BodyAnchor.transform.position.y;
             }
         }
 
@@ -78,7 +81,7 @@ namespace LiveAvatar.AvatarController.VRM
 
         private void calcParams()
         {
-            if(!isActive) return;
+            if (!isActive) return;
             BodyPos = GetBodyPos(_rect);
             HeadAng = GetHeadAng(_landmarkList);
             UnshiftBuffer(BodyPosBuffer, BodyPos);
@@ -87,6 +90,9 @@ namespace LiveAvatar.AvatarController.VRM
             if (BlendShapeController)
             {
                 BlendShapeController.MouthOpen = GetMouthOpen(_landmarkList);
+                BlendShapeController.LeftEyeOpen = GetLeftEyeOpenRatio(_landmarkList);
+                BlendShapeController.RightEyeOpen = GetRightEyeOpenRatio(_landmarkList);
+                FaceExpressionController.AutoDetectedFace = GetFaceExpression(_landmarkList);
             }
         }
 
@@ -96,12 +102,15 @@ namespace LiveAvatar.AvatarController.VRM
             if (isActive)
             {
                 var _bodyPos = AvarageBuffer(BodyPosBuffer);
-                BodyAnchor.transform.localPosition = _bodyPos;
-                //            HeadAnchor.transform.localEulerAngles = new Vector3(HeadAng.x, HeadAng.y, HeadAng.z );
+                BodyAnchor.transform.position = TrackedCamera.transform.rotation * _bodyPos + TrackedCamera.transform.position;
+                // 体は水平に保つ移動(オイラー角のYのみ適用) + カメラに向かせる
+                BodyAnchor.transform.rotation = Quaternion.AngleAxis(180.0f,Vector3.up) * Quaternion.Euler(0, TrackedCamera.transform.rotation.eulerAngles.y, 0) ;
                 var _headAng = AvarageBuffer(HeadAngBuffer);
-                HeadAnchor.transform.localEulerAngles = HeadAngleOffset + _headAng;
-//                HeadAnchor.transform.eulerAngles = HeadAngleOffset + new Vector3(HeadAng.y, HeadAng.x, HeadAng.z + 10);
+                // 頭の角度と 体とカメラの傾きの成分を打ち消す
+                HeadAnchor.transform.localEulerAngles = HeadAngleOffset + _headAng + new Vector3(- TrackedCamera.transform.rotation.eulerAngles.x ,0,- TrackedCamera.transform.rotation.eulerAngles.z);
             }
+
+            isActive = false;
         }
 
         private void fadeDetedtedEvent(object sender, FacelandmarkResultEventArgs facelandmarkResultEventArgs)
@@ -131,9 +140,6 @@ namespace LiveAvatar.AvatarController.VRM
             xPos = (xPos - (xMax / 2)) / (xMax / 2) / BodyPosX * zPos;
             yPos = -(yPos - (yMax / 2)) / (yMax / 2) / BodyPosY * zPos;
             zPos = zPos * BodyPosRatioZ + BodyPosOffsetZ;
-
-            // 初期位置のオフセットを適用
-            yPos += BodyPosYOffset;
 
             // 顔の大きさと中心から初期位置分ずらして体位置に利用
             return new Vector3(xPos, yPos, zPos);
@@ -228,13 +234,40 @@ namespace LiveAvatar.AvatarController.VRM
             return ave;
         }
 
-        float GetMouthOpen(List<Vector2> points)
+        private float GetMouthOpen(List<Vector2> points)
         {
             Vector2 upperLipTop = points[51];
             Vector2 upperLipBottom = points[62];
             Vector2 lowerLipTop = points[66];
             Vector2 lowerLipBottom = points[57];
             return (lowerLipTop.y - upperLipBottom.y)/(lowerLipBottom.y - upperLipTop.y) * LipOpenRatio;
+        }
+
+        private float GetLeftEyeOpenRatio (List<Vector2> points)
+        {
+            float size = Mathf.Abs (points [44].y - points [46].y) / Mathf.Abs (points [27].y - points [30].y);
+            return Mathf.InverseLerp (0.1f, 0.16f, size);
+        }
+
+        private float GetRightEyeOpenRatio (List<Vector2> points)
+        {
+            float size = Mathf.Abs (points [37].y - points [41].y) / Mathf.Abs (points [27].y - points [30].y);
+            return Mathf.InverseLerp (0.1f, 0.16f, size);
+        }
+
+        BlendShapeKey GetFaceExpression(List<Vector2> points)
+        {
+            Vector2 noseTop = points[33];
+            Vector2 mouthLeftMiddle = points[60];
+            Vector2 mouthRightMiddle = points[64];
+
+            var mouthSide = Vector2.Angle(mouthRightMiddle - mouthLeftMiddle , noseTop - mouthLeftMiddle);
+            smileParam = mouthSide;// * Mathf.Abs(Mathf.Sin(HeadAng.y));
+            if(smileParam < 40) return new BlendShapeKey(BlendShapePreset.Joy); 
+            if(smileParam > 80) return new BlendShapeKey(BlendShapePreset.Sorrow); 
+            
+            return new BlendShapeKey(BlendShapePreset.Neutral);
+
         }
     }
 }
