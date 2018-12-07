@@ -10,7 +10,7 @@ namespace LiveAvatar
     {
 
         [SerializeField] private Text frontText;
-        [SerializeField] private SpeechApi _speechApi;
+        private SpeechApi _speechApi;
         public bool speech = false;
 
         private void Start()
@@ -39,6 +39,16 @@ namespace LiveAvatar
         void Voice(string text)
         {
             StartCoroutine(_speechApi.Speech(text));
+        }
+
+        public void SetSpeechEnabled(bool flag)
+        {
+            speech = flag;
+        }
+
+        public void SetSpeechUrl(string url)
+        {
+            _speechApi.SetUrl(url);
         }
     }
 }

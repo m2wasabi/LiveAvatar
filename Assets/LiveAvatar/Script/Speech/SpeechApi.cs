@@ -33,6 +33,11 @@ namespace LiveAvatar.Speech
     
         private string url = "http://local:password@localhost:7180/PLAY/2000";
 
+        public void SetUrl(string url)
+        {
+            this.url = url;
+        }
+
         public IEnumerator  Speech(string text) {
             SeikaTalk talk = new SeikaTalk();
             talk.talktext = text;
