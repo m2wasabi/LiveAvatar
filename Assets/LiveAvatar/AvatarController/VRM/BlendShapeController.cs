@@ -6,11 +6,18 @@ namespace LiveAvatar.AvatarController.VRM
 {
     public class BlendShapeController : MonoBehaviour
     {
+        public enum EyeBlink
+        {
+            OFF,
+            WebCamera
+        }
+
         public BlendShapeKey EmotionStat;
         public float EmotionMag;
         public float MouthOpen { get; set; }
         public float LeftEyeOpen { get; set; }
         public float RightEyeOpen { get; set; }
+        private EyeBlink _eyeBlink = EyeBlink.OFF;
 
         private VRMBlendShapeProxy m_blendShapePloxy;
 
@@ -42,8 +49,11 @@ namespace LiveAvatar.AvatarController.VRM
             m_blendShapePloxy.SetValue(BlendShapePreset.A, MouthOpen);
             if (EmotionStat.Name == "NEUTRAL" || EmotionStat.Name == "ANGRY")
             {
-                m_blendShapePloxy.SetValue(BlendShapePreset.Blink_L, 1.0f - LeftEyeOpen);
-                m_blendShapePloxy.SetValue(BlendShapePreset.Blink_R, 1.0f - RightEyeOpen);
+                if (_eyeBlink == EyeBlink.WebCamera)
+                {
+                    m_blendShapePloxy.SetValue(BlendShapePreset.Blink_L, 1.0f - LeftEyeOpen);
+                    m_blendShapePloxy.SetValue(BlendShapePreset.Blink_R, 1.0f - RightEyeOpen);
+                }
             }
         }
 
@@ -70,6 +80,11 @@ namespace LiveAvatar.AvatarController.VRM
         {
             EmotionStat = blendShapeKey;
             EmotionMag = magnitude;
+        }
+
+        public void SetEyeBlink(int val)
+        {
+            _eyeBlink = (EyeBlink) val;
         }
     }
 }
