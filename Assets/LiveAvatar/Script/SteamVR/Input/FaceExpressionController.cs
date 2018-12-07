@@ -36,6 +36,11 @@ public class FaceExpressionController : MonoBehaviour {
         }
         else
         {
+            if(_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                ResetFaceExpression();
+            }
+
             if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && _device_R.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 Debug.Log("Into Face Con");
@@ -50,6 +55,11 @@ public class FaceExpressionController : MonoBehaviour {
             if(_edittingFace) UpdateFaceExpression();
         }
 
+    }
+
+    void ResetFaceExpression()
+    {
+        _blendShapeController.SetFaceExpression(new BlendShapeKey(BlendShapePreset.Neutral), 0);
     }
 
     void UpdateFaceExpression()
