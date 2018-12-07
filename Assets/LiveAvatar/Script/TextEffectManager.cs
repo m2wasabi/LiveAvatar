@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 namespace LiveAvatar
 {
@@ -21,6 +23,10 @@ namespace LiveAvatar
         void TriggerFrontText(string text)
         {
             frontText.text = text;
+            Observable.Timer(TimeSpan.FromSeconds(10))
+                .Where(_ => frontText.text == text)
+                .Subscribe(_ => frontText.text = "")
+                .AddTo(gameObject);
         }
     }
 }
