@@ -14,7 +14,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
     [SerializeField]
     List<int> _validDeviceIds = new List<int>();
 
-    void Start()
+    void Awake()
     {
         var error = EVRInitError.None;
         _vrSystem = OpenVR.Init(ref error, EVRApplicationType.VRApplication_Other);
