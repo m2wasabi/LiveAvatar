@@ -143,6 +143,13 @@ namespace LiveAvatar
                 }); 
         }
 
+        public void SetWebcamIndex(int index)
+        {
+            requestedDeviceName = WebCamTexture.devices[index].name;
+            Observable.NextFrame()
+                .Subscribe(_ => initWebCamTexture());
+        }
+
         private void initWebCamTexture()
         {
             // 別スレッドでWebCam初期化
