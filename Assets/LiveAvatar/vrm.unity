@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 152582692}
   - component: {fileID: 152582691}
   - component: {fileID: 152582690}
+  - component: {fileID: 152582693}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -671,7 +672,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 152582693}
+        m_MethodName: OnChangeSetting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &152582691
@@ -707,6 +719,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 152582688}
+--- !u!114 &152582693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 152582688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491fe6fc53af7de478d8b57822ce9dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cameras:
+  - {fileID: 1161791275}
+  - {fileID: 423885134}
+  BackGroundObjects:
+  - {fileID: 55663448}
 --- !u!1 &159139237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1744,7 @@ Camera:
   m_GameObject: {fileID: 423885130}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -7329,7 +7357,6 @@ GameObject:
   - component: {fileID: 1721781558}
   - component: {fileID: 1721781557}
   - component: {fileID: 1721781556}
-  - component: {fileID: 1721781559}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -7382,18 +7409,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1721781559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1721781555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491fe6fc53af7de478d8b57822ce9dcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackGroundObject: {fileID: 55663448}
 --- !u!1 &1731164780 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1707913845486044, guid: bcfcb1b16ebed974ea8244e270af8d4a,
