@@ -1,6 +1,7 @@
 using System.IO;
 using System;
 using System.Text;
+using LiveAvatar;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class ScenarioLoader : MonoBehaviour
     public int currentSelected = 0;
 
     public GameObject ContentBox;
-    public Text Telop;
+    public TextEffectManager textEffectMan;
     public ToggleGroup ToggleGroup;
 
     private string _scenario = "";
@@ -112,7 +113,7 @@ public class ScenarioLoader : MonoBehaviour
             GameObject toggle = Instantiate(UIprefab, ContentBox.transform) as GameObject;
             toggle.GetComponent<Toggle>().group = ToggleGroup;
             toggle.GetComponentInChildren<Text>().text = rs.ReadLine();
-            toggle.GetComponent<TelopSwitch>().telopTarget = Telop;
+            toggle.GetComponent<TelopSwitch>().textManager = textEffectMan;
         }
     }
 }

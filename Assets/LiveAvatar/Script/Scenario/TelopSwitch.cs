@@ -1,9 +1,10 @@
+using LiveAvatar;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TelopSwitch : MonoBehaviour
 {
-    public Text telopTarget;
+    public TextEffectManager textManager;
 
     private string telopText = null;
     private Toggle toggle;
@@ -18,14 +19,7 @@ public class TelopSwitch : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            telopTarget.text = telopText;
-        }
-        else
-        {
-            if (telopTarget.text == telopText)
-            {
-                telopTarget.text = "";
-            }
+            textManager.SetText(telopText);
         }
     }
 }
