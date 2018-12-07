@@ -10,6 +10,8 @@ public class ScenarioController : MonoBehaviour {
     public GameObject ScrollViewUI;
     private ScenarioLoader _scenarioLoader;
 
+    [SerializeField] private bool IsEnabled = true;
+
     void Start () {
         if (leftHandController != null)
         {
@@ -20,6 +22,7 @@ public class ScenarioController : MonoBehaviour {
     }
 
     void Update () {
+        if (!IsEnabled) { return; }
         if (_device_L.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
             ScrollViewUI.SetActive(!ScrollViewUI.activeSelf);
@@ -47,5 +50,14 @@ public class ScenarioController : MonoBehaviour {
             _scenarioLoader.ToggleAction();
         }
 
+    }
+
+    public void SetEnabled(bool flag)
+    {
+        IsEnabled = flag;
+        if (!flag)
+        {
+            ScrollViewUI.SetActive(false);
+        }
     }
 }
