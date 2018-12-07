@@ -14,7 +14,7 @@ namespace LiveAvatar.UI
     {
 
         private ToggleGroup ToggleGroup;
-        private IEnumerable<Toggle> Toggles;
+        private Toggle[] Toggles;
 
         public SteamVR_TrackedObject SteamController;
         private SteamVR_Controller.Device _device;
@@ -27,21 +27,14 @@ namespace LiveAvatar.UI
             if (SteamController != null)
             {
                 _device = SteamVR_Controller.Input((int) SteamController.index);
-                this.UpdateAsObservable()
-                    .Where(_ => _device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
-                    .Subscribe(_ => ToggleForward());
+                this.ObserveEveryValueChanged(t => _device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+                    .Subscribe(x => SetToggleActive(x?0:1));
             }
         }
-	
-        void ToggleForward()
+
+        void SetToggleActive(int index)
         {
-            if(!Toggles.Any()) return;
-            var target = Toggles.SkipWhile(toggle => !toggle.isOn).Skip(1).FirstOrDefault();
-            if (target == null || target.isOn)
-            {
-                target = Toggles.FirstOrDefault(toggle => !toggle.isOn);
-            }
-            target.isOn = true;
+            Toggles[index].isOn = true;
         }
     }
 }
