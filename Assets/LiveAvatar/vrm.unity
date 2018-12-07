@@ -7716,6 +7716,7 @@ GameObject:
   - component: {fileID: 1242525362}
   - component: {fileID: 1242525363}
   - component: {fileID: 1242525364}
+  - component: {fileID: 1242525365}
   m_Layer: 5
   m_Name: MonitorCanvas
   m_TagString: Untagged
@@ -7820,7 +7821,7 @@ MonoBehaviour:
   SelectionArray: []
   currentSelected: 0
   ContentBox: {fileID: 1419768778}
-  Telop: {fileID: 1634260445}
+  textEffectMan: {fileID: 1242525365}
   ToggleGroup: {fileID: 1419768780}
 --- !u!114 &1242525363
 MonoBehaviour:
@@ -7834,8 +7835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftHandController: {fileID: 1046053740}
-  rightHandController: {fileID: 414008289}
   ScrollViewUI: {fileID: 2125807744}
+  IsEnabled: 1
 --- !u!114 &1242525364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7848,6 +7849,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConfigUI: {fileID: 205084277}
+--- !u!114 &1242525365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242525357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be0944c5cd94814fb95d7104719bfa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontText: {fileID: 1634260445}
+  speech: 0
 --- !u!1 &1244886910
 GameObject:
   m_ObjectHideFlags: 0
