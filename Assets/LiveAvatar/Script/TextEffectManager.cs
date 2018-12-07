@@ -1,4 +1,5 @@
 ﻿using System;
+using LiveAvatar.Speech;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
@@ -9,13 +10,19 @@ namespace LiveAvatar
     {
 
         [SerializeField] private Text frontText;
+        [SerializeField] private SpeechApi _speechApi;
         public bool speech = false;
+
+        private void Start()
+        {
+            _speechApi = new SpeechApi();
+        }
 
         public void SetText(string text)
         {
             if (speech)
             {
-                // ToDo : SpeechEngine 
+                Voice(text); 
             }
             TriggerFrontText(text);
         }
@@ -27,6 +34,11 @@ namespace LiveAvatar
                 .Where(_ => frontText.text == text)
                 .Subscribe(_ => frontText.text = "")
                 .AddTo(gameObject);
+        }
+
+        void Voice(string text)
+        {
+            StartCoroutine(_speechApi.Speech(text));
         }
     }
 }
