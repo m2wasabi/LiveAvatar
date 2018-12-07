@@ -1796,6 +1796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201304053}
   - component: {fileID: 201304054}
+  - component: {fileID: 201304055}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -1842,7 +1843,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1867,6 +1868,18 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &201304055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201304052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303aa8cb6356716429053b81e1948a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsOn: {fileID: 201304052}
 --- !u!1 &205084277
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,6 +4830,7 @@ GameObject:
   - component: {fileID: 843915434}
   - component: {fileID: 843915433}
   - component: {fileID: 843915432}
+  - component: {fileID: 843915435}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -4895,7 +4909,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 843915435}
+        m_MethodName: SetScenarioMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &843915433
@@ -4931,6 +4956,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 843915430}
+--- !u!114 &843915435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843915430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9942b7d08c5d9a64aa306d6d0b5df918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scenarioController: {fileID: 1242525363}
+  _speechRecognizer: {fileID: 1242525366}
 --- !u!1001 &848685124
 Prefab:
   m_ObjectHideFlags: 0
@@ -7717,6 +7755,7 @@ GameObject:
   - component: {fileID: 1242525363}
   - component: {fileID: 1242525364}
   - component: {fileID: 1242525365}
+  - component: {fileID: 1242525366}
   m_Layer: 5
   m_Name: MonitorCanvas
   m_TagString: Untagged
@@ -7862,6 +7901,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontText: {fileID: 1634260445}
   speech: 0
+--- !u!114 &1242525366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1242525357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38dea5c02a6dde147b16079d61a46314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftHandController: {fileID: 1046053740}
+  m_ui: {fileID: 201304055}
+  _textEffectManager: {fileID: 1242525365}
+  IsEnabled: 0
 --- !u!1 &1244886910
 GameObject:
   m_ObjectHideFlags: 0
@@ -13021,7 +13075,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1539552523}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6666667
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
