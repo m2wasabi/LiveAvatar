@@ -753,9 +753,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d71cdc52bc21b849a9ddd2981c68230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrackedCamera: {fileID: 0}
   BodyAnchor: {fileID: 1553827434242348}
   HeadAnchor: {fileID: 1194812967816016}
   BlendShapeController: {fileID: 0}
+  BodyPos: {x: 0, y: 0, z: 0}
+  HeadAng: {x: 0, y: 0, z: 0}
+  smileParam: 0
 --- !u!114 &114277733376990496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -785,7 +789,8 @@ MonoBehaviour:
   rightHandController: {fileID: 1330707951506358}
   leftHandGuide: {fileID: 1001434085161066}
   rightHandGuide: {fileID: 1982889902554580}
-  trackingOffset: {fileID: 1841992232368176}
+  trackingOffset: {fileID: 4046812782841708}
+  CalibrationUI: {fileID: 0}
 --- !u!114 &114516349846669110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -816,3 +821,4 @@ MonoBehaviour:
   targetClass: 2
   resetDeviceIds: 9
   origin: {fileID: 4046812782841708}
+  _validDeviceIds: 
