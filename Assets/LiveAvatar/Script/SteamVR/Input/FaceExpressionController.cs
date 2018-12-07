@@ -28,8 +28,8 @@ public class FaceExpressionController : MonoBehaviour {
 
     void Update ()
     {
-        if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu)) AutoEmote = !AutoEmote;
-        
+//        if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu)) AutoEmote = !AutoEmote;
+
         if (AutoEmote)
         {
             _blendShapeController.SetFaceExpression(AutoDetectedFace, 1.0f);
@@ -41,7 +41,7 @@ public class FaceExpressionController : MonoBehaviour {
                 ResetFaceExpression();
             }
 
-            if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && _device_R.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+            if (_device_R.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad) && _device_R.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
             {
                 Debug.Log("Into Face Con");
                 _edittingFace = true;
@@ -54,7 +54,6 @@ public class FaceExpressionController : MonoBehaviour {
             }
             if(_edittingFace) UpdateFaceExpression();
         }
-
     }
 
     void ResetFaceExpression()
@@ -97,5 +96,10 @@ public class FaceExpressionController : MonoBehaviour {
             // Fun
             _blendShapeController.SetFaceExpression(new BlendShapeKey(BlendShapePreset.Fun), faceMag);
         }
+    }
+
+    public void SetAutoEmote(int val)
+    {
+        AutoEmote = (val == 0);
     }
 }
