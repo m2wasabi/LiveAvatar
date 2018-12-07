@@ -41,7 +41,7 @@ public class FaceExpressionController : MonoBehaviour {
                 ResetFaceExpression();
             }
 
-            if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && _device_R.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+            if (_device_R.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && _device_R.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
             {
                 Debug.Log("Into Face Con");
                 _edittingFace = true;
