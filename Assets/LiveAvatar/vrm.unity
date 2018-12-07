@@ -1934,7 +1934,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &489829304
@@ -2427,7 +2427,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &567411864
@@ -8862,6 +8862,11 @@ Prefab:
       propertyPath: CalibrationUI
       value: 
       objectReference: {fileID: 898590771}
+    - target: {fileID: 114196651160111284, guid: 0354ce119bc31ea4da1e245ecca1b754,
+        type: 2}
+      propertyPath: TrackedCamera
+      value: 
+      objectReference: {fileID: 1161791272}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0354ce119bc31ea4da1e245ecca1b754, type: 2}
   m_IsPrefabParent: 0
