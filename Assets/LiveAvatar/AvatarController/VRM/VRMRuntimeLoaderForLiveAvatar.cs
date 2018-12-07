@@ -6,6 +6,7 @@ using RootMotion.FinalIK;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.UI;
 using VRM;
 using LiveAvatar.AvatarController.VRM.UI;
 
@@ -17,7 +18,10 @@ namespace LiveAvatar.AvatarController.VRM
         bool m_loadAsync = true;
 
         [SerializeField, Header("GUI")]
-        CanvasManager m_canvas;
+        Canvas m_canvas;
+
+        [SerializeField]
+        Button m_loadVRMButton;
 
         [SerializeField]
         LookTarget m_faceCamera;
@@ -103,8 +107,8 @@ namespace LiveAvatar.AvatarController.VRM
                 return;
             }
 
-            m_canvas.LoadVRMButton.onClick.AddListener(LoadVRMClicked);
-            this.UpdateAsObservable().Where(_ => Input.GetKeyDown(KeyCode.Q)).Subscribe(_ => LoadVRMClicked());
+            m_loadVRMButton.onClick.AddListener(LoadVRMClicked);
+            this.UpdateAsObservable().Where(_ => Input.GetKeyDown(KeyCode.Tab)).Subscribe(_ => LoadVRMClicked());
 
             _handPoseController = GetComponent<HandPoseController>();
             _blendShapeController = GetComponent<BlendShapeController>();

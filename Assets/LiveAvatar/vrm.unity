@@ -6225,7 +6225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_loadAsync: 1
-  m_canvas: {fileID: 0}
+  m_canvas: {fileID: 1242525360}
+  m_loadVRMButton: {fileID: 1431097596}
   m_faceCamera: {fileID: 0}
   m_modalWindowPrefab: {fileID: 1417642719711440, guid: 076974e56cf73d7409fd6aec2bdef2e6,
     type: 2}
@@ -6265,6 +6266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftHandController: {fileID: 1046053740}
   RightHandController: {fileID: 414008289}
+  LeftHandToggle: {fileID: 1945849034}
+  RightHandToggle: {fileID: 536820581}
   controlType: 1
 --- !u!114 &1117432738
 MonoBehaviour:
@@ -6878,6 +6881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftHandController: {fileID: 0}
   RightHandController: {fileID: 0}
+  LeftHandToggle: {fileID: 0}
+  RightHandToggle: {fileID: 0}
   controlType: 1
 --- !u!114 &1209434960
 MonoBehaviour:
