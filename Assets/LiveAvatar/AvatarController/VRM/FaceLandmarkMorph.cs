@@ -28,14 +28,14 @@ namespace LiveAvatar.AvatarController.VRM
         private Vector3[] HeadAngBuffer = new Vector3[5];
 
         // キャラクター制御パラメーターの調整値
-        protected float BodyPosX = 3;
+        protected float BodyPosX = -3;
         protected float BodyPosY = 3;
         protected float BodyPosRatioZ = 1.2f;
         protected float BodyPosOffsetZ = 0.0f;
         protected Vector3 HeadAngleOffset;
         protected float HeadRotateOffsetX = 0;
         protected float HeadRotateOffsetY = 0;
-        protected float HeadRotateRatioY = -70;
+        protected float HeadRotateRatioY = 70;
         protected float HeadRotateOffsetZ = 90;
         protected float HeadRotateRatioX = -300;
         protected float LipOpenRatio = 2;
