@@ -8,6 +8,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 using VRM;
+using VRM.Samples;
 using LiveAvatar.AvatarController.VRM.UI;
 
 namespace LiveAvatar.AvatarController.VRM
