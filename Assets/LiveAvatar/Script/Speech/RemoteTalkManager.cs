@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using IST.RemoteTalk;
 
@@ -21,8 +22,38 @@ namespace LiveAvatar.Speech
             {
                 _client.serverPort = ret;
                 _client.UpdateStats();
+                setCastList(_client.casts);
             }
+        }
 
+        private void setCastList(Cast[] casts)
+        {
+            // ToDo: Castリストをドロップダウンに更新する
+            
+            // ToDo: Onchangeをチェックする
+            
+        }
+
+        public void OnhangeCast()
+        {
+            // ToDo: 引数ちゃんとする
+            
+            // ToDO: Cast変更したときに今のCastを記憶する
+        }
+
+        private void setParamsList()
+        {
+            // ToDO: 音声パラメータを取得・更新する
+        }
+
+        public void OnChangeTalkParams()
+        {
+            // ToDo: 音声パラメータを変更した処理・記録・更新する
+        }
+
+        public void OnSpeech()
+        {
+            // ToDO: 発声する
         }
     }
 }
