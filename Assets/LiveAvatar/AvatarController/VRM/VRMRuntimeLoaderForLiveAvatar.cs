@@ -53,6 +53,7 @@ namespace LiveAvatar.AvatarController.VRM
 
         private HandPoseController _handPoseController;
         private BlendShapeController _blendShapeController;
+        private VRMLipSyncContextMorphTarget _vrmLipSyncContextMorphTarget;
 
         void SetupTarget()
         {
@@ -89,6 +90,11 @@ namespace LiveAvatar.AvatarController.VRM
                     }
                     _blendShapeController.Setup(m_blendShape);
                 }
+
+                if (_vrmLipSyncContextMorphTarget != null)
+                {
+                    _vrmLipSyncContextMorphTarget.SetVRMBlendShapeProxy(m_blendShape);
+                }
             }
         }
 
@@ -113,6 +119,7 @@ namespace LiveAvatar.AvatarController.VRM
 
             _handPoseController = GetComponent<HandPoseController>();
             _blendShapeController = GetComponent<BlendShapeController>();
+            _vrmLipSyncContextMorphTarget = GetComponent<VRMLipSyncContextMorphTarget>();
         }
 
         void LoadVRMClicked()

@@ -12,18 +12,35 @@ namespace LiveAvatar
         [SerializeField] private Text frontText;
         [SerializeField] private Text monitorText;
         private SpeechApi _speechApi;
+        private RemoteTalkManager _remoteTalkManager;
         public bool speech = false;
+        public enum SpeechEngine
+        {
+            None,
+            SeikaServer,
+            RemoteTalk
+        }
+
+        [SerializeField]
+        private Dropdown speechEngine;
 
         private void Start()
         {
             _speechApi = new SpeechApi();
+            _remoteTalkManager = transform.GetComponent<RemoteTalkManager>();
         }
 
         public void SetText(string text)
         {
-            if (speech)
+            var activeSpeechEngine = (SpeechEngine) Enum.ToObject(typeof(SpeechEngine), speechEngine.value);
+            switch (activeSpeechEngine)
             {
-                Voice(text); 
+                case SpeechEngine.SeikaServer:
+                    SpeechSeikaServer(text); 
+                    break;
+                case SpeechEngine.RemoteTalk:
+                    SpeechRemoteTalk(text);
+                    break;
             }
             TriggerFrontText(text);
             TriggerMonitorText(text);
@@ -47,9 +64,14 @@ namespace LiveAvatar
                 .AddTo(gameObject);
         }
 
-        void Voice(string text)
+        void SpeechSeikaServer(string text)
         {
             StartCoroutine(_speechApi.Speech(text));
+        }
+
+        void SpeechRemoteTalk(string text)
+        {
+            _remoteTalkManager.Speech(text);
         }
 
         public void SetSpeechEnabled(bool flag)
