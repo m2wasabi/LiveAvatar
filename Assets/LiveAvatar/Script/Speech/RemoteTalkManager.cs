@@ -65,6 +65,10 @@ namespace LiveAvatar.Speech
 
         private void SetParamsList(TalkParam[] talkParams)
         {
+            foreach( Transform t in  Sliders.transform)
+            {
+                GameObject.Destroy(t.gameObject);
+            }
             // ToDO: 音声パラメータを取得・更新する
             for (var i = 0; i < talkParams.Length; i++)
             {
