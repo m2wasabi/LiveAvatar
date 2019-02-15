@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using IST.RemoteTalk;
+using UniRx;
+using UniRx.Triggers;
 
 namespace LiveAvatar.Speech
 {
@@ -9,10 +13,15 @@ namespace LiveAvatar.Speech
         [SerializeField]
         private RemoteTalkClient _client = null;
 
+        [SerializeField]
+        private Dropdown _castSelector;
+
         private void Awake()
         {
             if (_client == null)
                 _client = GameObject.FindObjectOfType<RemoteTalkClient>();
+
+            _castSelector.onValueChanged.AddListener(delegate { OnhangeCast(_castSelector); });
         }
 
         public void Connect()
@@ -22,26 +31,29 @@ namespace LiveAvatar.Speech
             {
                 _client.serverPort = ret;
                 _client.UpdateStats();
-                setCastList(_client.casts);
+                this.UpdateAsObservable().First(_ => _client.isReady).Subscribe(_ =>
+                {
+                    SetCastList(_client.casts);
+                });
             }
         }
 
-        private void setCastList(Cast[] casts)
+        private void SetCastList(Cast[] casts)
         {
-            // ToDo: Castリストをドロップダウンに更新する
-            
-            // ToDo: Onchangeをチェックする
-            
+            // Castリストをドロップダウンに更新する
+            _castSelector.ClearOptions();
+            _castSelector.AddOptions(casts.Select(a => a.name).ToList());
         }
 
-        public void OnhangeCast()
+        public void OnhangeCast(Dropdown change)
         {
-            // ToDo: 引数ちゃんとする
-            
-            // ToDO: Cast変更したときに今のCastを記憶する
+            if (_client.casts.Length > 0)
+            {
+                _client.castID = change.value;
+            }
         }
 
-        private void setParamsList()
+        private void setParamsList(TalkParam[] talkParams)
         {
             // ToDO: 音声パラメータを取得・更新する
         }
