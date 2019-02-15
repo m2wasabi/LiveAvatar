@@ -44,7 +44,7 @@ namespace LiveAvatar.Speech
                 {
                     SetCastList(_client.casts);
                     SetParamsList(_client.talkParams);
-                });
+                }).AddTo(gameObject);
             }
         }
 
@@ -76,7 +76,7 @@ namespace LiveAvatar.Speech
             _sliderFields = Sliders.GetComponentsInChildren<UI_SliderField>().ToList();
         }
 
-        public void OnSpeech(string text)
+        public void Speech(string text)
         {
             var talk = new Talk();
             talk.castName = _client.casts[_client.castID].name;
