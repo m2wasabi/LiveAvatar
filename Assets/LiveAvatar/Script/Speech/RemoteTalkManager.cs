@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 using IST.RemoteTalk;
 using UniRx;
 using UniRx.Triggers;
+using LiveAvatar.UI;
 
 namespace LiveAvatar.Speech
 {
@@ -16,12 +18,19 @@ namespace LiveAvatar.Speech
         [SerializeField]
         private Dropdown _castSelector;
 
+        [SerializeField]
+        private GameObject Sliders;
+        [SerializeField]
+        private GameObject SliderPrefab;
+
+        private TalkParam[] _talkParams;
+        private List<UI_SliderField> _sliderFields;
         private void Awake()
         {
             if (_client == null)
                 _client = GameObject.FindObjectOfType<RemoteTalkClient>();
 
-            _castSelector.onValueChanged.AddListener(delegate { OnhangeCast(_castSelector); });
+            _castSelector.onValueChanged.AddListener(_ => { OnhangeCast(_castSelector); });
         }
 
         public void Connect()
@@ -34,6 +43,7 @@ namespace LiveAvatar.Speech
                 this.UpdateAsObservable().First(_ => _client.isReady).Subscribe(_ =>
                 {
                     SetCastList(_client.casts);
+                    SetParamsList(_client.talkParams);
                 });
             }
         }
@@ -53,19 +63,32 @@ namespace LiveAvatar.Speech
             }
         }
 
-        private void setParamsList(TalkParam[] talkParams)
+        private void SetParamsList(TalkParam[] talkParams)
         {
             // ToDO: 音声パラメータを取得・更新する
+            for (var i = 0; i < talkParams.Length; i++)
+            {
+                var slider = Instantiate(SliderPrefab, Sliders.transform) as GameObject;
+                var sliderComponent = slider.GetComponent<UI_SliderField>(); 
+                sliderComponent.Initialize(talkParams[i].name,talkParams[i].rangeMin,talkParams[i].rangeMax,talkParams[i].value);
+            }
+
+            _sliderFields = Sliders.GetComponentsInChildren<UI_SliderField>().ToList();
         }
 
-        public void OnChangeTalkParams()
+        public void OnSpeech(string text)
         {
-            // ToDo: 音声パラメータを変更した処理・記録・更新する
-        }
-
-        public void OnSpeech()
-        {
-            // ToDO: 発声する
+            var talk = new Talk();
+            talk.castName = _client.casts[_client.castID].name;
+            
+            var talkParams = new List<TalkParam>();
+            foreach (var sliderField in _sliderFields)
+            {
+                talkParams.Add(sliderField.GetTalkParam());
+            }
+            talk.param = talkParams.ToArray();
+            talk.text = text;
+            _client.Play(talk);
         }
     }
 }
