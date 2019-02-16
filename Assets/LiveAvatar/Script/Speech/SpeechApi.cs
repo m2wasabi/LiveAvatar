@@ -18,7 +18,7 @@ namespace LiveAvatar.Speech
             public SeikaTalk()
             {
                 speed = 1.0f;
-                volume = 1.0f;
+                volume = 2.0f;
                 pitch = 1.0f;
                 intonation = 1.0f;
             }
