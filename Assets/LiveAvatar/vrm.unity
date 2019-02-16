@@ -9175,6 +9175,7 @@ MonoBehaviour:
     Name: 
     Preset: 0
   EmotionMag: 0
+  CameraMouth: 1
 --- !u!114 &1117432739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9205,6 +9206,7 @@ MonoBehaviour:
   lipsyncContext: {fileID: 1855425697}
   LipSyncSensitivity: 1
   SmoothAmount: 100
+  enabled: 0
 --- !u!1 &1138632320
 GameObject:
   m_ObjectHideFlags: 0
@@ -13628,6 +13630,7 @@ GameObject:
   - component: {fileID: 1721781556}
   - component: {fileID: 1721781559}
   - component: {fileID: 1721781560}
+  - component: {fileID: 1721781561}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -13715,6 +13718,20 @@ MonoBehaviour:
   monitorText: {fileID: 946486345}
   speech: 0
   speechEngine: {fileID: 306400996}
+--- !u!114 &1721781561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1721781555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774ccee3573a0b040bbb79fc5d26f202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LipsyncConfig: {fileID: 1876753806}
+  _blendShapeController: {fileID: 1117432738}
+  _vrmLipSync: {fileID: 1117432743}
 --- !u!1 &1738200870
 GameObject:
   m_ObjectHideFlags: 0
@@ -16844,7 +16861,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1539552523}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6666667
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

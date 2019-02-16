@@ -14,6 +14,7 @@ namespace LiveAvatar.AvatarController.VRM
 
         public BlendShapeKey EmotionStat;
         public float EmotionMag;
+        public bool CameraMouth = true;
         public float MouthOpen { get; set; }
         public float LeftEyeOpen { get; set; }
         public float RightEyeOpen { get; set; }
@@ -46,7 +47,7 @@ namespace LiveAvatar.AvatarController.VRM
         {
             m_blendShapePloxy.SetValues(m_faceReset);
             m_blendShapePloxy.SetValue(EmotionStat, EmotionMag);
-            m_blendShapePloxy.SetValue(BlendShapePreset.A, MouthOpen);
+            if (CameraMouth) m_blendShapePloxy.SetValue(BlendShapePreset.A, MouthOpen);
             if (EmotionStat.Name == "NEUTRAL" || EmotionStat.Name == "ANGRY")
             {
                 if (_eyeBlink == EyeBlink.WebCamera)
