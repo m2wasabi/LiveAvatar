@@ -45,6 +45,9 @@ public class BackGroundChanger : MonoBehaviour {
                 case 2:
                     SetBGColor(Color.white);
                     break;
+                case 3:
+                    SetBGObject(1);
+                    break;
                 default:
                     break;
         }
