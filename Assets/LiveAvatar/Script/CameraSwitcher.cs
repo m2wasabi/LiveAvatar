@@ -7,6 +7,16 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField]
     private Transform camerapos;
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha1)) SetCam1();
+            if(Input.GetKeyDown(KeyCode.Alpha2)) SetCam2();
+            if(Input.GetKeyDown(KeyCode.Alpha3)) SetCam3();
+        } 
+    }
+
     public void SetCam1()
     {
         camerapos.position = Vector3.zero;
