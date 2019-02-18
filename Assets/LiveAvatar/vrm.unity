@@ -745,7 +745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21.98935}
+  m_AnchoredPosition: {x: 0, y: -22}
   m_SizeDelta: {x: 600, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &114237855
@@ -2765,13 +2765,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 306400993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9942b7d08c5d9a64aa306d6d0b5df918, type: 3}
+  m_Script: {fileID: 11500000, guid: ab26e0a0c29235d46a3c4d46b0afb038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scenarioController: {fileID: 1242525363}
-  _speechRecognizer: {fileID: 1242525366}
-  m_seikaServerUI: {fileID: 0}
-  m_remoteTalkUI: {fileID: 0}
+  m_seikaServerUI: {fileID: 108416238}
+  m_remoteTalkUI: {fileID: 1689966054}
 --- !u!114 &306400996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2826,7 +2824,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 306400995}
-        m_MethodName: SetScenarioMode
+        m_MethodName: SetSpeechEngine
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5987,7 +5985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: http://local:password@localhost:718
+  m_Text: http://local:password@localhost:7180/PLAY/
 --- !u!222 &695908851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6769,8 +6767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenarioController: {fileID: 1242525363}
   _speechRecognizer: {fileID: 1242525366}
-  m_seikaServerUI: {fileID: 0}
-  m_remoteTalkUI: {fileID: 0}
 --- !u!1001 &848685124
 Prefab:
   m_ObjectHideFlags: 0
@@ -9139,8 +9135,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 87, y: -16}
-  m_SizeDelta: {x: 250, y: 30}
+  m_AnchoredPosition: {x: 124, y: -16}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085987133
 MonoBehaviour:
@@ -14230,7 +14226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1689966055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14251,7 +14247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -49}
+  m_AnchoredPosition: {x: 0, y: -22}
   m_SizeDelta: {x: 600, y: 210}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1697576317
