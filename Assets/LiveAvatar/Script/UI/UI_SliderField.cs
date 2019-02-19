@@ -34,6 +34,10 @@ namespace LiveAvatar.UI
             return talkParam;
         }
 
+        public string GetName()
+        {
+            return m_label.text;
+        }
         public float GetValue()
         {
             return m_slider.value;

@@ -26,7 +26,7 @@ namespace LiveAvatar.Speech
         [SerializeField]
         private GameObject SliderPrefab;
 
-        private List<UI_SliderField> _sliderFields;
+        private List<UI_SliderField> _sliderFields = new List<UI_SliderField>();
 
         [Serializable]
         public class Cast
@@ -182,6 +182,7 @@ namespace LiveAvatar.Speech
             {
                 Destroy(t.gameObject);
             }
+            _sliderFields.Clear();
 
             for (int i = 0; i < _settings.Count; i++)
             {
@@ -189,8 +190,8 @@ namespace LiveAvatar.Speech
                 var sliderComponent = slider.GetComponent<UI_SliderField>();
                 var wholeNumbers = !(Math.Abs(_settings[i].step - Mathf.Floor(_settings[i].step)) > 0);
                 sliderComponent.Initialize(_settings[i].key,_settings[i].min,_settings[i].max,_settings[i].value, wholeNumbers);
+                _sliderFields.Add(sliderComponent);
             }
-            _sliderFields = Sliders.GetComponentsInChildren<UI_SliderField>().ToList();
         }
 
         public void OnhangeCast(Dropdown change)
@@ -240,11 +241,13 @@ namespace LiveAvatar.Speech
             var data = new SpeechJson();
             data.talktext = text;
             var emotions = new List<Emotion>();
-            for (int i = 0; i < _settings.Count; i++)
+            for (int i = 0; i < _sliderFields.Count; i++)
             {
-                if (_settings[i].category == SeikaSettingCategory.effect)
+                var key = _sliderFields[i].GetName();
+                var rule = _settings.Find(s => s.key == key);
+                if (rule.category == SeikaSettingCategory.effect)
                 {
-                    switch (_settings[i].key)
+                    switch (key)
                     {
                         case "volume":
                             data.volume = _sliderFields[i].GetValue();
@@ -260,9 +263,9 @@ namespace LiveAvatar.Speech
                             break;
                     }
                 }
-                else if (_settings[i].category == SeikaSettingCategory.emotion)
+                else if (rule.category == SeikaSettingCategory.emotion)
                 {
-                    emotions.Add(new Emotion(){Key = _settings[i].key, Value = _sliderFields[i].GetValue()});
+                    emotions.Add(new Emotion(){Key = key, Value = _sliderFields[i].GetValue()});
                 }
 
                 if (emotions.Count > 0)

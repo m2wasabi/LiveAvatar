@@ -794,7 +794,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 108416239}
-  - component: {fileID: 108416240}
   m_Layer: 5
   m_Name: SeikaServerConnection
   m_TagString: Untagged
@@ -827,22 +826,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -22}
   m_SizeDelta: {x: 600, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &108416240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 108416238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a964ea57e346d4afaaf1de9ff14d11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseUrl: {fileID: 1085987133}
-  _castSelector: {fileID: 807104174}
-  Sliders: {fileID: 1066385177}
-  SliderPrefab: {fileID: 1531255349109368, guid: e7e16f49bfea1074a86e8e359a3c539b,
-    type: 2}
 --- !u!1 &114237855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,7 +2356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 108416240}
+      - m_Target: {fileID: 1721781562}
         m_MethodName: GetCastList
         m_Mode: 1
         m_Arguments:
@@ -6353,7 +6336,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: http://local:password@localhost:7180/PLAY/
+  m_Text: http://local:password@localhost:7180/
 --- !u!222 &695908851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7942,7 +7925,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 108416240}
+      - m_Target: {fileID: 1721781562}
         m_MethodName: Speech
         m_Mode: 5
         m_Arguments:
@@ -10255,7 +10238,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: http://local:password@localhost:7180/PLAY/2000
+  m_Text: http://local:password@localhost:7180/
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -15768,6 +15751,7 @@ GameObject:
   - component: {fileID: 1721781559}
   - component: {fileID: 1721781560}
   - component: {fileID: 1721781561}
+  - component: {fileID: 1721781562}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -15869,6 +15853,22 @@ MonoBehaviour:
   LipsyncConfig: {fileID: 1876753806}
   _blendShapeController: {fileID: 1117432738}
   _vrmLipSync: {fileID: 1117432743}
+--- !u!114 &1721781562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1721781555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a964ea57e346d4afaaf1de9ff14d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseUrl: {fileID: 1085987133}
+  _castSelector: {fileID: 807104174}
+  Sliders: {fileID: 1066385177}
+  SliderPrefab: {fileID: 1531255349109368, guid: e7e16f49bfea1074a86e8e359a3c539b,
+    type: 2}
 --- !u!1 &1738200870
 GameObject:
   m_ObjectHideFlags: 0
