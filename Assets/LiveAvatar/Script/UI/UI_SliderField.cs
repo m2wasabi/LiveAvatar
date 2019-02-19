@@ -33,5 +33,10 @@ namespace LiveAvatar.UI
             talkParam.rangeMin = m_slider.minValue;
             return talkParam;
         }
+
+        public float GetValue()
+        {
+            return m_slider.value;
+        }
     }
 }
