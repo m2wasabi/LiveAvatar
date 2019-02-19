@@ -191,6 +191,21 @@ https://assetstore.unity.com/packages/3d/props/interior/japanese-classroom-model
 拙作の `HandPoses_0.2.0.unitypackage` をインポートする
 https://1drv.ms/f/s!AhjMMY3zrGQhuiNeoa6140bvKWyA
 
+#### OVR LipSync
+1.30.0
+https://developer.oculus.com/downloads/package/oculus-lipsync-unity/
+
+#### Oculus Lipsync Unity
+1.30.0
+https://developer.oculus.com/downloads/package/oculus-lipsync-unity/
+
+
+#### VRMLipSyncContextMorphTarget
+https://github.com/TsubokuLab/VRMLipSyncContextMorphTarget
+
+#### RemoteTalk
+https://github.com/i-saint/RemoteTalk
+
 ### フォントの導入
 
 #### k-font
@@ -207,7 +222,7 @@ http://font.sumomo.ne.jp/font_1.html
 
 ### ビルド
 
-`ai_classroom_steamvr.unity` のシーンをビルドする
+`vrm.unity` のシーンをビルドする
 
 ## うまくいかないときは(既知の問題)
 
