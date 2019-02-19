@@ -11,8 +11,8 @@ namespace LiveAvatar
 
         [SerializeField] private Text frontText;
         [SerializeField] private Text monitorText;
-        private SpeechApi _speechApi;
         private RemoteTalkManager _remoteTalkManager;
+        private SeikaCenterManager _seikaCenterManager;
         public bool speech = false;
         public enum SpeechEngine
         {
@@ -26,8 +26,8 @@ namespace LiveAvatar
 
         private void Start()
         {
-            _speechApi = new SpeechApi();
             _remoteTalkManager = transform.GetComponent<RemoteTalkManager>();
+            _seikaCenterManager = transform.GetComponent<SeikaCenterManager>();
         }
 
         public void SetText(string text)
@@ -66,7 +66,7 @@ namespace LiveAvatar
 
         void SpeechSeikaServer(string text)
         {
-            StartCoroutine(_speechApi.Speech(text));
+            _seikaCenterManager.Speech(text);
         }
 
         void SpeechRemoteTalk(string text)
@@ -77,11 +77,6 @@ namespace LiveAvatar
         public void SetSpeechEnabled(bool flag)
         {
             speech = flag;
-        }
-
-        public void SetSpeechUrl(string url)
-        {
-            _speechApi.SetUrl(url);
         }
     }
 }
