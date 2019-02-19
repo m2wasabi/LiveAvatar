@@ -191,6 +191,10 @@ https://assetstore.unity.com/packages/3d/props/interior/japanese-classroom-model
 拙作の `HandPoses_0.2.0.unitypackage` をインポートする
 https://1drv.ms/f/s!AhjMMY3zrGQhuiNeoa6140bvKWyA
 
+#### UniVRM
+0.50
+https://github.com/dwango/UniVRM/releases
+
 #### OVR LipSync
 1.30.0
 https://developer.oculus.com/downloads/package/oculus-lipsync-unity/
