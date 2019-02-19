@@ -69,7 +69,7 @@ namespace LiveAvatar.Speech
             {
                 GameObject.Destroy(t.gameObject);
             }
-            // ToDO: 音声パラメータを取得・更新する
+            // 音声パラメータを取得・更新する
             for (var i = 0; i < talkParams.Length; i++)
             {
                 var slider = Instantiate(SliderPrefab, Sliders.transform) as GameObject;
